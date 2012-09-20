@@ -1,6 +1,7 @@
 require 'spec_helper'
 
-describe "AddActivities" do
+describe "ManageActivities" do
+  
   it "creates an activity and tracks it until clock out" do
     visit new_activity_path
     fill_in 'Title', with: 'test title'
@@ -14,5 +15,8 @@ describe "AddActivities" do
     click_link 'Clock out'
     page.text.should match(time_regex)
     page.text.should_not match('In progress...')
+  end
+  
+  it "allows to manualy change or add time_trackers" do
   end
 end
