@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
 */
+input[type="submit"] {
+	background-color:transparent;
+	border: 0;
+	padding: 0;
+}

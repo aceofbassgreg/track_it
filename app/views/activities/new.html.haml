@@ -1,0 +1,10 @@
+%h2 New Activity
+=form_for @activity do |f|
+	.text
+		=f.label :title
+		=f.text_field :title
+	.text
+		=f.label :description
+		=f.text_area :description
+	.btn
+		=f.submit "Create Activity", class: 'btn btn-large'

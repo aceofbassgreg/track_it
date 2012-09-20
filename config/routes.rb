@@ -1,4 +1,14 @@
 Trackit::Application.routes.draw do
+  
+  resources :activities do
+    member do
+      post 'clock_in'
+      put 'clock_out'
+    end
+  end
+    
+  root to: 'activities#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

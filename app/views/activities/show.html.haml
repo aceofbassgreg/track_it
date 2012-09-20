@@ -1,0 +1,18 @@
+%table.table
+	%caption
+		%h2 Activity
+	%tr	
+		%th Title:
+		%td=@activity.title
+	%tr	
+		%th Description:
+		%td=@activity.description
+	%tr	
+		%th Clock in:
+		%td=@clock_in
+	%tr
+		%th Clock out:
+		%td=@clock_out
+
+=link_to "Clock in", clock_in_activity_path, {class: 'btn btn-small', method: :post}
+=link_to "Clock out", clock_out_activity_path, {class: 'btn btn-small', method: :put}
