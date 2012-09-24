@@ -12,8 +12,9 @@ class ActivitiesController < ApplicationController
     
     @time_trackers = TimeTracker.find_all_by_activity_id(@activity)
     
-    @clock_in = TimeTracker.assign_clock_in_value(params[:id])
-    @clock_out = TimeTracker.assign_clock_out_value(params[:id])
+    
+    @clock_in = TimeTracker.format(params[:id], :clock_in)
+    @clock_out = TimeTracker.format(params[:id], :clock_out)
   end
   
   def new
@@ -28,32 +29,49 @@ class ActivitiesController < ApplicationController
       flash[:notice]= "New activity created."
       redirect_to activity_path(@activity)
     else
-      flash[:error]= "Please check for errors."
+      flash[:error]= "#{@activity.errors.messages}"
       render 'new'
     end
   end
   
+  def edit
+    @activity = Activit.find(params[:id])
+  end
+  
+  def update
+  end
+  
   def clock_in
-    if TimeTracker.clock_in_able(params[:id])
-      TimeTracker.clock_in!(params[:id])
-      
+    @time_tracker = TimeTracker.new
+    @time_tracker.clock_in = Time.zone.now
+    @time_tracker.date = @time_tracker.clock_in.to_date
+    @time_tracker.activity_id = params[:id]
+    
+    if @time_tracker.save
       flash[:notice]="Clocked in."
       redirect_to activity_path(params[:id])
     else
-      flash[:error]="Make sure you are clocked out first."
+      flash[:error]=I18n.t "activerecord.errors.models.activity.attributes.base.clock_in_able"
       redirect_to activity_path(params[:id])
     end
   end
   
   def clock_out
-    if TimeTracker.clock_out_able(params[:id])
-      TimeTracker.clock_out!(params[:id])
-
+    @time_tracker = TimeTracker.find_all_by_activity_id(params[:id]).last || TimeTracker.new # making sure there is a last object
+    @time_tracker.clock_out = Time.zone.now
+    
+    if @time_tracker.save
       flash[:notice]="Clocked out."
       redirect_to activity_path(params[:id])
     else
-      flash[:error]="You need to clock in before you can clock out."
+      flash[:error]=I18n.t "activerecord.errors.models.activity.attributes.base.clock_out_able"
       redirect_to activity_path(params[:id])
     end
+  end
+  
+  private
+
+  def graph
+    @graph = Graph.new(@activity.id)
   end
 end

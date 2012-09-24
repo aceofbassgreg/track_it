@@ -17,10 +17,9 @@
 					.nav-collapse
 						%ul.nav.nav-pill
 							%li.active=link_to "Home", root_path
+							%li.active=link_to "Activities", activities_path
 		.container
 			-flash.each do |name,msg|
 				%div{:class => "alert alert-#{name == :notice ? 'success' : 'error' }"}
 					=msg
-			.row
-				.span9=yield
-				.span3
+			=yield

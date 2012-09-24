@@ -6,6 +6,8 @@ Trackit::Application.routes.draw do
       put 'clock_out'
     end
   end
+  
+  resources :time_trackers
     
   root to: 'activities#index'
   

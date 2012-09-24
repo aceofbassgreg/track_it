@@ -1,5 +1,5 @@
-require 'spec_helper'
-
-describe ActivitiesController do
-
-end
+# require 'spec_helper'
+# 
+# describe ActivitiesController do
+# 
+# end

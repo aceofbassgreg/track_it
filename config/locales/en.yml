@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+      errors:
+        models:
+          activity:
+            attributes:
+              base:
+                clock_in_able:  "Make sure you clock out before you clock in."
+                clock_out_able: "You have to clock in before you can clock out."
+                presence: "Cannot save an empty record."
