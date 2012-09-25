@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 gem 'haml-rails'
+gem 'jquery-rails'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'json'
+gem 'devise'
+gem 'cancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,9 +17,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
 end
-
-gem 'jquery-rails'
-gem 'devise'
 
 group :development, :test do 
   gem 'sqlite3'
