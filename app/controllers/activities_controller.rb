@@ -44,6 +44,12 @@ class ActivitiesController < ApplicationController
     end
   end
   
+  def destroy
+    Activity.find(params[:id]).destroy
+    flash[:notice] = "Activity destroyed."
+    redirect_to activities_path
+  end
+  
   def clock_in
     @time_tracker = TimeTracker.new
     @time_tracker.clock_in = Time.zone.now
