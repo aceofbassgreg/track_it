@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe "ManageActivities" do
   
+  before (:each) do
+    visit new_user_registration_path
+    fill_in 'Email', with: 'test@gmail.com'
+    fill_in 'Password', with: '1234qwer'
+    fill_in 'Password Confirmation', with: '1234qwer'
+  end
+  
   it "creates an activity, clocks in and clocks out" do
     visit new_activity_path
     fill_in 'Title', with: 'test title'

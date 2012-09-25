@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   
   def index
-    @activities = Activity.all
+    @activities = Activity.find_all_by_user_id(current_user.id)
   end
   
   def show
