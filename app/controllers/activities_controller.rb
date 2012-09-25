@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  load_and_authorize_resource
+  
   helper_method :status
   
   def index
@@ -45,7 +47,8 @@ class ActivitiesController < ApplicationController
   end
   
   def destroy
-    Activity.find(params[:id]).destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
     flash[:notice] = "Activity destroyed."
     redirect_to activities_path
   end

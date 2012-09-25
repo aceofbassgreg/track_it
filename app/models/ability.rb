@@ -2,6 +2,23 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new
+    
+    can :read, Activity do |activity|
+      activity.user == user
+    end
+    
+    can :edit, Activity do |activity|
+      activity.user == user
+    end
+    
+    can :delete, :all
+    
+    can :create, :all
+    can :clock_in, :all
+    can :clock_out, :all
+
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

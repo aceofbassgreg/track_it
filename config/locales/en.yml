@@ -14,5 +14,7 @@ en:
                 present:            "Can't be blank"
   confirmations:
     activity:       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
+  access:
+    denied:         "Access denied!"
                 
                 

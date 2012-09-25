@@ -8,4 +8,4 @@
 		-elsif status.clocked_in?
 			=render partial: 'clocked_in', locals: {activity: @activity}
 		-else
-			=render partial: 'no_time_trackers'
+			=render partial: 'no_time_trackers', locals: {activity: @activity}
