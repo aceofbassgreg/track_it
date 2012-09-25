@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
   end
   
   def edit
-    @activity = Activit.find(params[:id])
+    @activity = Activity.find(params[:id])
   end
   
   def update

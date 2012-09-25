@@ -12,5 +12,7 @@ en:
                 clock_out_able:     "You have to clock in before you can clock out."
                 either_present:     "Both clock in and clock out can't be blank"
                 present:            "Can't be blank"
+  confirmations:
+    activity:       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
                 
                 
