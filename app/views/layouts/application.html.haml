@@ -6,7 +6,7 @@
 	=javascript_include_tag "application"
 	=csrf_meta_tags
 	%body
-		.navbar.navbar-fixed-top
+		.navbar.navbar-fixed-top.navbar-inverse
 			.navbar-inner
 				.container
 					%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
@@ -18,6 +18,14 @@
 						%ul.nav.nav-pill
 							%li.active=link_to "Home", root_path
 							%li.active=link_to "Activities", activities_path
+						%ul.nav.nav-pill.pull-right
+							-if user_signed_in?
+								%li.inactive=link_to "Signed in as #{current_user.email}", "#"
+								%li.active=link_to "Edit profile", edit_user_registration_path
+								%li.active=link_to "Sign out", destroy_user_session_path, method: :delete
+							-else
+								%li.active=link_to "Sign up", new_user_registration_path
+								%li.active=link_to "Sign in", new_user_session_path
 		.container
 			-flash.each do |name,msg|
 				%div{:class => "alert alert-#{name == :notice ? 'success' : 'error' }"}

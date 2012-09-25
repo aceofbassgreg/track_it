@@ -1,5 +1,7 @@
 Trackit::Application.routes.draw do
   
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+
   resources :activities do
     member do
       post 'clock_in'

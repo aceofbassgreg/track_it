@@ -24,6 +24,7 @@ class ActivitiesController < ApplicationController
   
   def create
     @activity = Activity.new(params[:activity])
+    @activity.user_id = current_user.id
     
     if @activity.save
       flash[:notice]= "New activity created."
@@ -39,6 +40,15 @@ class ActivitiesController < ApplicationController
   end
   
   def update
+    @activity = Activity.find(params[:id])
+    
+    if @activity.save
+      flash[:notice]= "Activity updated."
+      redirect_to activity_path(@activity)
+    else
+      flash[:error]= "#{@activity.errors.messages}"
+      render 'new'
+    end
   end
   
   def clock_in
