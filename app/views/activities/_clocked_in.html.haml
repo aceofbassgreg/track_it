@@ -1,0 +1,5 @@
+%h2=activity.title
+%p=activity.description
+%p="Last time tracker started on #{activity.time_trackers.last.date.strftime("%D")} at #{activity.time_trackers.last.clock_in.strftime("%H:%m")}"
+%p=link_to "Clock out", clock_out_activity_path, {class: 'btn btn-large btn-primary', method: :put}
+	

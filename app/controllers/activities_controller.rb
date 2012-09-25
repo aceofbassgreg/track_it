@@ -1,4 +1,5 @@
 class ActivitiesController < ApplicationController
+  helper_method :status
   
   def index
     @activities = Activity.find_all_by_user_id(current_user.id)
@@ -6,15 +7,7 @@ class ActivitiesController < ApplicationController
   
   def show
     @activity = Activity.find(params[:id])
-    
-    @time_tracker = TimeTracker.new
-    @time_tracker.activity_id = @activity.id
-    
     @time_trackers = TimeTracker.find_all_by_activity_id(@activity)
-    
-    
-    @clock_in = TimeTracker.format(params[:id], :clock_in)
-    @clock_out = TimeTracker.format(params[:id], :clock_out)
   end
   
   def new
@@ -83,5 +76,9 @@ class ActivitiesController < ApplicationController
 
   def graph
     @graph = Graph.new(@activity.id)
+  end
+  
+  def status
+    @status = ActivityStatus.new(@activity.id)
   end
 end

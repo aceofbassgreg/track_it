@@ -6,12 +6,16 @@ FactoryGirl.define do
   end
   
   factory :time_tracker do 
+    clock_in      Time.now
+    clock_out     Time.now
+    activity_id   1
+    date          Date.today
   end
   
   factory :user do
-    email "test@gmail.com"
-    password "1234qwer"
-    password_confirmation "1234qwer"
+    sequence(:email) {|n| "foo#{n}@example.com"}
+    password "secret"
+    password_confirmation "secret"
   end
   
 end

@@ -3,9 +3,11 @@ class ClockAbleValidator < ActiveModel::Validator
   def validate(record)
     time_tracker = time_tracker(record)
     error_location = "activerecord.errors.models.activity.attributes.base"
-    record.errors[:clock_in_able] = I18n.t "#{error_location}.clock_in_able" if !clock_in_able?(record,time_tracker)
-    record.errors[:clock_out_able] = I18n.t "#{error_location}.clock_out_able" if !clock_out_able?(record,time_tracker)
-    record.errors[:presence] = I18n.t "#{error_location}.presence" if empty?(record)
+    record.errors[:clock_in_able]     =         I18n.t "#{error_location}.clock_in_able" if !clock_in_able?(record,time_tracker)
+    record.errors[:clock_out_able]    =         I18n.t "#{error_location}.clock_out_able" if !clock_out_able?(record,time_tracker)
+    record.errors[:either_present]    =         I18n.t "#{error_location}.either_present" if either_present?(record)  
+    record.errors[:present]           =         I18n.t "#{error_location}.present" if !present?(record.date)
+    record.errors[:present]           =         I18n.t "#{error_location}.present" if !present?(record.activity_id)
   end
   
   def clock_in_able?(record,time_tracker)
@@ -21,11 +23,15 @@ class ClockAbleValidator < ActiveModel::Validator
     return false
   end
   
-  def empty?(record)
+  def time_tracker(record)
+    TimeTracker.find_all_by_activity_id(record.activity_id).last || TimeTracker.new
+  end
+  
+  def either_present?(record)
     return true if record.clock_in.nil? and record.clock_out.nil?
   end
   
-  def time_tracker(record)
-    TimeTracker.find_all_by_activity_id(record.activity_id).last || TimeTracker.new
+  def present?(record_attribute)
+    return true if !record_attribute.nil?
   end
 end

@@ -8,6 +8,9 @@ en:
           activity:
             attributes:
               base:
-                clock_in_able:  "Make sure you clock out before you clock in."
-                clock_out_able: "You have to clock in before you can clock out."
-                presence: "Cannot save an empty record."
+                clock_in_able:      "Make sure you clock out before you clock in."
+                clock_out_able:     "You have to clock in before you can clock out."
+                either_present:     "Both clock in and clock out can't be blank"
+                present:            "Can't be blank"
+                
+                
