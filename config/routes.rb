@@ -1,5 +1,7 @@
 Trackit::Application.routes.draw do
   
+  get "main/index"
+
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
 
   resources :activities do
@@ -11,7 +13,7 @@ Trackit::Application.routes.draw do
   
   resources :time_trackers
     
-  root to: 'activities#index'
+  root to: 'main#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
