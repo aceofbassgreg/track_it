@@ -1,5 +1,5 @@
 class Activity < ActiveRecord::Base
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :user_id
   
   belongs_to :user
   has_many :time_trackers, dependent: :destroy

@@ -1,5 +1,7 @@
 %h2 New Activity
 =form_for activity do |f|
+	.hidden_field
+		=f.hidden_field :user_id, value: current_user.id
 	.text
 		=f.label :title
 		=f.text_field :title
