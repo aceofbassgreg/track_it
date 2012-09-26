@@ -12,7 +12,7 @@ class Ability
       activity.user == user
     end
     
-    can :delete, :all
+    can :destroy, :all
     
     can :create, :all
     can :clock_in, :all

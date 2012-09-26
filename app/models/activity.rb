@@ -2,7 +2,7 @@ class Activity < ActiveRecord::Base
   attr_accessible :title, :description
   
   belongs_to :user
-  has_many :time_trackers
+  has_many :time_trackers, dependent: :destroy
   
   
   validates :title, :description, presence: true
