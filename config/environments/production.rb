@@ -60,7 +60,7 @@ Trackit::Application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'mlpinit.com' }
 
   # Enable threaded mode
   # config.threadsafe!
