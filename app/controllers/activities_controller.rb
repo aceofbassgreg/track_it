@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   helper_method :status
   
   def index
-    @activities = Activity.find_all_by_user_id(current_user.id)
+    @activities = current_user.activities
   end
   
   def show
@@ -53,34 +53,6 @@ class ActivitiesController < ApplicationController
     redirect_to activities_path
   end
   
-  def clock_in
-    @time_tracker = TimeTracker.new
-    @time_tracker.clock_in = Time.zone.now
-    @time_tracker.date = @time_tracker.clock_in.to_date
-    @time_tracker.activity_id = params[:id]
-    
-    if @time_tracker.save
-      flash[:notice]="Clocked in."
-      redirect_to activity_path(params[:id])
-    else
-      flash[:error]=I18n.t "activerecord.errors.models.activity.attributes.base.clock_in_able"
-      redirect_to activity_path(params[:id])
-    end
-  end
-  
-  def clock_out
-    @time_tracker = TimeTracker.find_all_by_activity_id(params[:id]).last || TimeTracker.new # making sure there is a last object
-    @time_tracker.clock_out = Time.zone.now
-    
-    if @time_tracker.save
-      flash[:notice]="Clocked out."
-      redirect_to activity_path(params[:id])
-    else
-      flash[:error]=I18n.t "activerecord.errors.models.activity.attributes.base.clock_out_able"
-      redirect_to activity_path(params[:id])
-    end
-  end
-  
   private
 
   def graph
@@ -88,6 +60,6 @@ class ActivitiesController < ApplicationController
   end
   
   def status
-    @status = ActivityStatus.new(@activity.id)
+    @status = ActivityStatus.new(@activity)
   end
 end

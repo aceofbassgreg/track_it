@@ -5,4 +5,11 @@ class TimeTracker < ActiveRecord::Base
   
   belongs_to :activity
   
+  def initialize(attributes = {})
+    super
+    self.activity_id = activity_id
+    self.clock_in = Time.zone.now
+    self.date = Date.today
+  end
+  
 end

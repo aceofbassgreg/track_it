@@ -4,9 +4,25 @@
 		=content_tag :div, "", id: "activity_graph", data: {time_tracker_graph: graph.current_week_daily_time}
 	.span3
 		-if status.clocked_out?
-			=render partial: 'clocked_out', locals: {activity: @activity}
+		
+			%h2=@activity.title
+			%p=@activity.description
+			%p="Last time tracker ended on #{@activity.time_trackers.last.date.strftime("%D")} at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
+			%p=link_to "Clock in", time_trackers_path(activity_id: @activity.id), {class: 'btn btn-large btn-primary', method: :post}
+			
 		-elsif status.clocked_in?
-			=render partial: 'clocked_in', locals: {activity: @activity}
+		
+			%h2=@activity.title
+			%p=@activity.description
+			%p="Last time tracker started on #{@activity.time_trackers.last.date.strftime("%D")} at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")}"
+			%p=link_to "Clock out", time_tracker_path(activity_id: @activity.id), {class: 'btn btn-large btn-primary', method: :put}
+			
 		-else
-			=render partial: 'no_time_trackers', locals: {activity: @activity}
-		=render partial: 'clock'
+		
+			%h2=@activity.title
+			%p=@activity.description
+			%p There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
+			%p=link_to "Clock in", time_trackers_path(activity_id: @activity.id), {class: 'btn btn-large btn-primary', method: :post}
+			
+		%p=render partial: 'clock'
+			

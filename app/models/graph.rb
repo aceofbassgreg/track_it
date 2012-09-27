@@ -9,6 +9,7 @@ class Graph
     @date.beginning_of_week(day)..@date.end_of_week(day)
   end
   
+  #store it in the database
   def current_week_daily_time
     array = []
     time_trackers = current_week_time_trackers

@@ -1,17 +1,14 @@
 class ActivityStatus
-  def initialize(activity_id)
-    @time_trackers = TimeTracker.find_all_by_activity_id(activity_id)
-    @last = @time_trackers.last || TimeTracker.new
+  def initialize(activity)
+    @time_tracker = activity.time_trackers.last
   end
   
   def clocked_in?
-    return true if !@last.clock_in.nil?
-    return false
+    return true unless @time_tracker.blank? or @time_tracker.clock_in.blank?
   end
   
   def clocked_out?
-    return true if !@last.clock_out.nil?
-    return false
+    return true unless @time_tracker.blank? or @time_tracker.clock_out.blank?
   end
   
 end
