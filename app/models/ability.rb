@@ -6,9 +6,8 @@ class Ability
     
     can :new, :all
     
-    can [:read,:edit,:update,:destroy,:create,:clock_in,:clock_out], Activity do |activity|
-      activity.user == user
-    end
+    can [:read,:edit,:update,:destroy,:create], Activity
+
 
     # Define abilities for the passed in user here. For example:
     #

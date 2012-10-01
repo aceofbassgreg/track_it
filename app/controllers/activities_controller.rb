@@ -1,25 +1,22 @@
 class ActivitiesController < ApplicationController
   load_and_authorize_resource
   
-  helper_method :status
+  helper_method :activity_status
   
   def index
     @activities = current_user.activities
   end
   
   def show
-    @activity = Activity.find(params[:id])
-    @time_trackers = TimeTracker.find_all_by_activity_id(@activity)
+    @activity = current_user.activities.find(params[:id])
   end
   
   def new
-    @activity = Activity.new
-    @activities = Activity.all
+    @activity = current_user.activities.new
   end
   
   def create
-    @activity = Activity.new(params[:activity])
-    @activity.user_id = current_user.id
+    @activity = current_user.activities.new(params[:activity])
     
     if @activity.save
       flash[:notice]= "New activity created."
@@ -31,11 +28,11 @@ class ActivitiesController < ApplicationController
   end
   
   def edit
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
   end
   
   def update
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
     
     if @activity.save
       flash[:notice]= "Activity updated."
@@ -47,8 +44,7 @@ class ActivitiesController < ApplicationController
   end
   
   def destroy
-    @activity = Activity.find(params[:id])
-    @activity.destroy
+    current_user.activities.find(params[:id]).destroy
     flash[:notice] = "Activity destroyed."
     redirect_to activities_path
   end
@@ -56,10 +52,6 @@ class ActivitiesController < ApplicationController
   private
 
   def graph
-    @graph = Graph.new(@activity.id)
-  end
-  
-  def status
-    @status = ActivityStatus.new(@activity)
+    @graph ||= Graph.new(@activity.id)
   end
 end

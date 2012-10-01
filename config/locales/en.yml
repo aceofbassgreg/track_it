@@ -13,8 +13,11 @@ en:
                 either_present:     "Both clock in and clock out can't be blank"
                 present:            "Can't be blank"
   confirmations:
-    activity:       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
+    activity:
+      delete:                       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
+      clocked_in:                   "Clocked in."
+      clocked_out:                  "Clocked out."
   access:
-    denied:         "Access denied!"
+    denied:                         "Access denied!"
                 
                 
