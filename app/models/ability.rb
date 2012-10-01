@@ -4,19 +4,9 @@ class Ability
   def initialize(user)
     user ||= User.new
     
-    can :read, Activity do |activity|
-      activity.user == user
-    end
+    can :new, :all
     
-    can :edit, Activity do |activity|
-      activity.user == user
-    end
-    
-    can :destroy, :all
-    
-    can :create, :all
-    can :clock_in, :all
-    can :clock_out, :all
+    can [:read,:edit,:update,:destroy,:create], Activity
 
 
     # Define abilities for the passed in user here. For example:

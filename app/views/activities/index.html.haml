@@ -12,7 +12,7 @@
 				.text=link_to activity.title, activity_path(activity)
 			%td
 				=link_to "Edit", edit_activity_path(activity), {class: 'btn btn-small'}
-				=link_to "Delete", activity_path(activity), {class: 'btn btn-small btn-danger', confirm: (I18n.t "confirmations.activity"), method: :delete}	
+				=link_to "Delete", activity_path(activity), {class: 'btn btn-small btn-danger', confirm: (I18n.t "confirmations.activity.delete"), method: :delete}	
 
 		
 =link_to "Add Activity", new_activity_path, {class: 'btn btn-large'}
