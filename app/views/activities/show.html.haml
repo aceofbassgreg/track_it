@@ -1,0 +1,12 @@
+.row
+	.span9
+		%h2="#{@activity.title} statistics"
+		=content_tag :div, "", id: "activity_graph", data: {time_tracker_graph: graph.current_week_daily_time}
+	.span3
+		-if status.clocked_out?
+			=render partial: 'clocked_out', locals: {activity: @activity}
+		-elsif status.clocked_in?
+			=render partial: 'clocked_in', locals: {activity: @activity}
+		-else
+			=render partial: 'no_time_trackers', locals: {activity: @activity}
+		=render partial: 'clock'

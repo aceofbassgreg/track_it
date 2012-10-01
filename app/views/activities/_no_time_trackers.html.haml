@@ -1,0 +1,6 @@
+%h2=activity.title
+%p=activity.description
+%p
+	There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
+%p
+	=link_to "Clock in", clock_in_activity_path, {class: 'btn btn-large btn-primary', method: :post}
