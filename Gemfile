@@ -1,33 +1,31 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
-gem 'haml-rails'
-gem 'jquery-rails'
+gem 'haml-rails', '0.3.5'
+gem 'jquery-rails', '2.1.3'
 
 
-gem 'json'
-gem 'devise'
-gem 'cancan'
+gem 'json', '1.7.5'
+gem 'devise', '2.1.2'
+gem 'cancan', '1.6.8'
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails', '2.1.3'
 end
 
 group :development, :test do 
-  gem 'sqlite3'
-  gem 'rspec-rails'
+  gem 'sqlite3', '1.3.6'
+  gem 'rspec-rails', '2.11.0'
 end
 group :test do
-  gem "factory_girl_rails"
-  gem 'capybara'
-  gem 'guard-rspec'
+  gem "factory_girl_rails", '4.1.0'
+  gem 'capybara', '1.1.2'
+  gem 'guard-rspec', '2.0.0'
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.14.1'
 end
