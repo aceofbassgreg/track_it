@@ -10,6 +10,10 @@ FactoryGirl.define do
     clock_out     Time.now
     activity_id   1
     date          Date.today
+
+    user_id 1
+  end
+
   end
   
   factory :user do

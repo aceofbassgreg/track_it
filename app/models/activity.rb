@@ -31,3 +31,4 @@ class Activity < ActiveRecord::Base
     true if last_time_tracker.clock_out
   end
 end
+

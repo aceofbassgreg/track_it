@@ -12,7 +12,6 @@
 
 		- elsif @activity.clocked_in?
 
-
 			%h2=@activity.title
 			%p=@activity.description
 			%p="Last time tracker started on #{@activity.time_trackers.last.date.strftime("%D")} at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")}"

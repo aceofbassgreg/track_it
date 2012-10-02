@@ -7,7 +7,7 @@ Trackit::Application.routes.draw do
   resources :activities do
     resources :time_trackers
   end
-    
+
   root to: 'main#index'
   
   # The priority is based upon order of creation:

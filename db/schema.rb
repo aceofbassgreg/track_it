@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121001231806) do
+=======
+ActiveRecord::Schema.define(:version => 20120927171617) do
+>>>>>>> master
 
   create_table "activities", :force => true do |t|
     t.string   "title"

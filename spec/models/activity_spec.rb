@@ -1,6 +1,8 @@
 require 'spec_helper'
+require 'cancan/matchers'
 
 describe Activity do
+
   describe "an activity" do
     before(:each) do 
       @activity = create(:activity)
@@ -40,5 +42,4 @@ describe Activity do
       @activity.clocked_in?.should be false
     end
   end
-
 end

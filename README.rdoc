@@ -1,1 +1,7 @@
-== To be updated...
+== TrackIt!
+
+TrackIt is an application meant to help users monitor their activities. The main purpose of this application is to help users become more efficient and have a better grasp of their time management needs.
+
+== In Development
+
+This application is currently in development. If you have any recommendations or if you would like to join me working on this project please feel free to contact me.

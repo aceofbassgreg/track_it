@@ -4,5 +4,4 @@ class TimeTracker < ActiveRecord::Base
   attr_accessible :clock_in, :clock_out, :activity_id, :date
   
   belongs_to :activity
-
 end
