@@ -6,10 +6,8 @@ jQuery ->
 		element: 'activity_graph'
 		data: $('#activity_graph').data('time-tracker-graph')
 		xkey: 'date'
-		ykeys: ['total_time']
+		ykeys: ['minutes']
 		labels: ['Minutes']
-		ymax: 'auto'
-		ymin: 0
 
 	# Create two variable with the names of the months and days in an array
 	 monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

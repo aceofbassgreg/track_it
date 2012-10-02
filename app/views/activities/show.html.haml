@@ -1,7 +1,7 @@
 .row
 	.span9
 		%h2= "#{@activity.title} statistics"
-	<!--	= content_tag :div, "", id: "activity_graph", data: {time_tracker_graph: graph.current_week_daily_time} -->
+		= content_tag :div, "", id: "activity_graph", data: {time_tracker_graph: graph.mapped_data}
 	.span3
 		- if @activity.clocked_out?
 

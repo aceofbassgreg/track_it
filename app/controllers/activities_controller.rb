@@ -1,5 +1,8 @@
 class ActivitiesController < ApplicationController
+  helper_method :graph
+  
   load_and_authorize_resource
+  
   def index
     @activities = current_user.activities
   end
@@ -44,7 +47,9 @@ class ActivitiesController < ApplicationController
     redirect_to activities_path
   end
   
+  private 
+  
   def graph
-    @graph ||= Graph.new(@activity.id)
+    @graph ||= Graph.new(@activity, Time.now - 10.days, Time.now + 10.days)
   end
 end
