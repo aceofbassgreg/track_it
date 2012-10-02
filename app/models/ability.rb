@@ -7,5 +7,5 @@ class Ability
     can :new, :all
     
     can [:read,:edit,:update,:destroy,:create], Activity
-
+  end
 end
