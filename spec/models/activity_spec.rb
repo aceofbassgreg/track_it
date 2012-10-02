@@ -18,11 +18,8 @@ describe Activity do
     
     it "should allow the user to clock out" do
       @activity.clock_in
-      
-      time_tracker_count = @activity.time_trackers.count
-      
-      @activity.clock_out
-      
+      time_tracker_count = @activity.time_trackers.count    
+      @activity.clock_out    
       @activity.time_trackers.count.should == time_tracker_count
       @activity.time_trackers.last.clock_out.should_not be_nil
     end

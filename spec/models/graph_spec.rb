@@ -10,8 +10,9 @@ describe Graph do
   end
   
   it "extracts time trackers between start date and end date" do 
-    activity = create!(:activity)
-    create!(:time_tracker,activity_id: activity.id)
-    create!(:time_tracker,activity_id: activity.id, clock_in: Time.now.)
+    activity = create(:activity)
+    create(:time_tracker,activity_id: activity.id)
+    create(:time_tracker,activity_id: activity.id, clock_in: Time.now)
+    pending
   end
 end
