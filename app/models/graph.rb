@@ -14,7 +14,7 @@ class Graph
     data = @activity.time_trackers.where(clock_in: @start_time..@end_time).order("clock_in ASC")
     # make sure that the last time trackers is clocked out.
     # if it is not clocked out we can't graph it
-    data.pop if data.last.clock_out.nil?
+    data.pop if !data.empty? and data.last[:clock_out].nil?
     data.group_by {|hash| hash[:clock_in].to_date}
   end
   
