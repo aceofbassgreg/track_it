@@ -10,7 +10,7 @@ class Activity < ActiveRecord::Base
   validates :description, length: {minimum: 15, maximum: 300}
   
   def clock_in
-    time_tracker = time_trackers.create! clock_in: Time.zone.now, date: Date.today
+    time_tracker = time_trackers.create! clock_in: Time.zone.now
   end
   
   def clock_out

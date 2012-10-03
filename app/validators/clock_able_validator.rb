@@ -6,7 +6,6 @@ class ClockAbleValidator < ActiveModel::Validator
     record.errors[:clock_in_able]     =         I18n.t "#{error_location}.clock_in_able" if !clock_in_able?(record,time_tracker)
     record.errors[:clock_out_able]    =         I18n.t "#{error_location}.clock_out_able" if !clock_out_able?(record,time_tracker)
     record.errors[:either_present]    =         I18n.t "#{error_location}.either_present" if either_present?(record)  
-    record.errors[:present]           =         I18n.t "#{error_location}.present" if !present?(record.date)
     record.errors[:present]           =         I18n.t "#{error_location}.present" if !present?(record.activity_id)
   end
   

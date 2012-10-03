@@ -31,7 +31,7 @@ class Graph
   
   def time(array)
     total_time = 0
-      array.each { |hash| total_time += hash[:clock_out] - hash[:clock_in] }
+      array.each { |hash| total_time += (hash[:clock_out] - hash[:clock_in]) / 60 }
     total_time.to_i
   end
   

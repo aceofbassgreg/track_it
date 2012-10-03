@@ -51,11 +51,5 @@ describe TimeTracker do
       time_tracker.valid?
       time_tracker.errors[:present].should include present_error
     end
-    
-    it "is invalid withouth date" do
-      time_tracker = build(:time_tracker, date: nil, activity_id: @activity.id)
-      time_tracker.valid?
-      time_tracker.errors[:present].should include present_error
-    end
   end
 end
