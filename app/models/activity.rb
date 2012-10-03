@@ -15,8 +15,12 @@ class Activity < ActiveRecord::Base
   
   def clock_out
     last_time_tracker = time_trackers.last
-    last_time_tracker.update_attribute :clock_out, Time.zone.now
-
+    if last_time_tracker[:clock_in].to_date == Time.zone.now.to_date
+      last_time_tracker.update_attribute :clock_out, Time.zone.now
+    else
+      last_time_tracker.update_attribute :clock_out, last_time_tracker[:clock_in].end_of_day
+      add_days
+    end
   end
   
   def clocked_in?
@@ -29,6 +33,18 @@ class Activity < ActiveRecord::Base
     last_time_tracker = time_trackers.last
     return false if last_time_tracker.nil?
     true if last_time_tracker.clock_out
+  end
+  
+  private
+  
+  def add_days
+    array =  (((time_trackers.last.clock_in + 1.day).to_date)..(Date.today - 1.day)).to_a
+    day2 = Date.today - 1.day
+    array.each do |time|
+      time = time.to_time
+      time_trackers.create! clock_in: time, clock_out: time.end_of_day
+    end
+    time_trackers.create! clock_in: Time.zone.now.beginning_of_day, clock_out: Time.zone.now
   end
 end
 

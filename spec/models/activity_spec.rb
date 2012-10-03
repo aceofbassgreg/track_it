@@ -38,5 +38,11 @@ describe Activity do
     it "should check if the activity is clocked in if there are no records" do
       @activity.clocked_in?.should be false
     end
+    
+    it "should split time trackers that extend on multiple days" do
+      create(:time_tracker, clock_in: Time.now - 5.day, activity_id: @activity.id)
+      @activity.clock_out
+      @activity.time_trackers.size.should eql(6)
+    end
   end
 end
