@@ -60,7 +60,7 @@ describe Graph do
     describe "mapping data" do 
       it "should map value to total time" do
         create(:time_tracker, activity_id: @activity.id, clock_out: Time.now + 2.hours)
-        p @graph.mapped_data.first[:minutes].should eql(120)
+        @graph.mapped_data.first[:minutes].should eql(120)
       end
     end
   end
