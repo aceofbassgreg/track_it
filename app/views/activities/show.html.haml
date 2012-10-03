@@ -3,10 +3,14 @@
 		%h2= "#{@activity.title} statistics"
 		= content_tag :div, "", id: "activity_graph", data: {time_tracker_graph: graph.all_data}
 		.graph_date_selector
-			%p= link_to "Last 7 days", activity_path(@activity, start_time: Time.zone.now - 7.days, end_time: Time.zone.now), {class: 'pull-left btn btn-small'}
-			%p= link_to "Last 14 days", activity_path(@activity, start_time: Time.zone.now - 14.days, end_time: Time.zone.now), {class: 'pull-left btn btn-small'}
-			%p= link_to "Last 30 days", activity_path(@activity, start_time: Time.zone.now - 30.days, end_time: Time.zone.now), {class: 'pull-left btn btn-small'}
-		
+			%p= link_to "Last 7 days", activity_path(@activity, start_time: Time.zone.now - 7.days, end_time: Time.zone.now), {class: 'pull-left btn'}
+			%p= link_to "Last 14 days", activity_path(@activity, start_time: Time.zone.now - 14.days, end_time: Time.zone.now), {class: 'pull-left btn'}
+			%p= link_to "Last 30 days", activity_path(@activity, start_time: Time.zone.now - 30.days, end_time: Time.zone.now), {class: 'pull-left btn'}
+			%span.pull-right
+				= form_tag activity_path(@activity), method: :get do
+					= text_field_tag :start_time," ", {class: 'pull-left input-small'}
+					= text_field_tag :end_time," ", {class: 'pull-left input-small'}
+					%span.btn= submit_tag 'Show custom dates', class: 'btn'
 		
 	.span3
 		- if @activity.clocked_out?

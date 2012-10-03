@@ -8,6 +8,14 @@ jQuery ->
 		xkey: 'date'
 		ykeys: ['minutes']
 		labels: ['Minutes']
+		
+	$('#start_time').datepicker
+		dateFormat: 'yy-mm-dd'
+	$('#end_time').datepicker
+		dateFormat: 'yy-mm-dd'
+	
+	 # $('#start_date').datepicker(format: 'yy-mm-dd') take a look at this as well 
+	
 
 	# Create two variable with the names of the months and days in an array
 	 monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
