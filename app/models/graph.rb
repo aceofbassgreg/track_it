@@ -1,14 +1,28 @@
 class Graph
-
-  def initialize(activity, start_time, end_time)
+  def initialize(activity)
     @activity = activity
-    if string_to_time?(start_time,end_time) and !start_time.empty? and !end_time.empty?
-      @start_time = start_time.to_time.beginning_of_day
-      @end_time = end_time.to_time.end_of_day
+  end
+  
+  def time_frame(params)
+    if params[:days]
+      standard(params[:days])
     else
-      @start_time = (Time.zone.now - 7.days).beginning_of_day
-      @end_time = (Time.zone.now).end_of_day
+      custom(params[:start_time], params[:end_time])
     end
+  end
+  
+  def default
+    standard(7)
+  end
+  
+  def standard(nr)
+    @start_time = Time.zone.now - nr.to_i.days
+    @end_time = Time.zone.now
+  end
+  
+  def custom(start_time, end_time)
+    @start_time = start_time.to_time.beginning_of_day
+    @end_time = end_time.to_time.end_of_day
   end
   
   def all_data
@@ -59,17 +73,19 @@ class Graph
     boolean
   end
   
-  private
+  def good_data?(params)
+    return true if params[:days]
+    start_time = params[:start_time]
+    end_time = params[:end_time]
+    return false if start_time.nil? or end_time.nil? or start_time.empty? or end_time.empty?
+    return true if string_to_time?(start_time, end_time)
+  end
   
   def string_to_time?(start_time, end_time)
     begin
-      if start_time.nil? and end_time.nil?
-        return false
-      else
-        start_time.to_time  
-        end_time.to_time
-        true
-      end
+      start_time.to_time  
+      end_time.to_time
+      true
     rescue ArgumentError
       false
     end
