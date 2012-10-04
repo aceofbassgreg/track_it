@@ -6,8 +6,8 @@ class Activity < ActiveRecord::Base
   
   
   validates :title, :description, presence: true
-  validates :title, length: {minimum: 2, maximum: 15}
-  validates :description, length: {minimum: 15, maximum: 300}
+  validates :title, length: {minimum: 2, maximum: 40}
+  validates :description, length: {minimum: 10, maximum: 500}
   
   def clock_in
     time_tracker = time_trackers.create! clock_in: Time.zone.now
