@@ -9,13 +9,8 @@ class ActivitiesController < ApplicationController
   
   def show
     @activity = current_user.activities.find(params[:id])
-    if params[:start_time] and params[:end_time]
-      @start_time = params[:start_time].to_time
-      @end_time = params[:end_time].to_time
-    else
-      @start_time = Time.zone.now - 7.days
-      @end_time = Time.zone.now
-    end
+    @start_time = params[:start_time]
+    @end_time = params[:end_time]
   end
   
   def new
@@ -57,6 +52,6 @@ class ActivitiesController < ApplicationController
   private 
   
   def graph
-    @graph ||= Graph.new(@activity, @start_time, @end_time)
+      @graph ||= Graph.new(@activity, @start_time, @end_time)
   end
 end

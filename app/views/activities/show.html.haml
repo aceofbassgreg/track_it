@@ -8,8 +8,8 @@
 			%p= link_to "Last 30 days", activity_path(@activity, start_time: Time.zone.now - 30.days, end_time: Time.zone.now), {class: 'pull-left btn'}
 			%span.pull-right
 				= form_tag activity_path(@activity), method: :get do
-					= text_field_tag :start_time," ", {class: 'pull-left input-small'}
-					= text_field_tag :end_time," ", {class: 'pull-left input-small'}
+					= text_field_tag :start_time, nil , {placeholder: 'Start Date', class: 'pull-left input-small'}
+					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
 					%span.btn= submit_tag 'Show custom dates', class: 'btn'
 		
 	.span3

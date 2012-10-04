@@ -2,8 +2,13 @@ class Graph
 
   def initialize(activity, start_time, end_time)
     @activity = activity
-    @start_time = start_time.beginning_of_day
-    @end_time = end_time.end_of_day
+    if string_to_time?(start_time,end_time)
+      @start_time = start_time.to_time.beginning_of_day
+      @end_time = end_time.to_time.end_of_day
+    else
+      @start_time = (Time.zone.now - 7.days).beginning_of_day
+      @end_time = (Time.zone.now).end_of_day
+    end
   end
   
   def all_data
@@ -52,5 +57,21 @@ class Graph
       boolean = true if hash[:date] == value
     end
     boolean
+  end
+  
+  private
+  
+  def string_to_time?(start_time, end_time)
+    begin
+      if !start_time.empty? and !end_time.empty?
+        start_time.to_time  
+        end_time.to_time
+        true
+      else
+        false
+      end
+    rescue ArgumentError
+      false
+    end
   end
 end
