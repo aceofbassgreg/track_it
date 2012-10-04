@@ -4,7 +4,10 @@ class Graph
   end
   
   def time_frame(params)
-    if params[:days]
+    case 
+    when (params[:days].nil? and params[:start_time].nil? and params[:end_time].nil?)
+      default
+    when params[:days]
       standard(params[:days])
     else
       custom(params[:start_time], params[:end_time])
@@ -74,6 +77,7 @@ class Graph
   end
   
   def good_data?(params)
+    return true if params[:start_time].nil? and params[:end_time].nil? and params[:days].nil?
     return true if params[:days]
     start_time = params[:start_time]
     end_time = params[:end_time]
