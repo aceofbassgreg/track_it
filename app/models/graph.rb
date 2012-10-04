@@ -2,7 +2,7 @@ class Graph
 
   def initialize(activity, start_time, end_time)
     @activity = activity
-    if string_to_time?(start_time,end_time)
+    if string_to_time?(start_time,end_time) and !start_time.empty? and !end_time.empty?
       @start_time = start_time.to_time.beginning_of_day
       @end_time = end_time.to_time.end_of_day
     else
@@ -63,12 +63,12 @@ class Graph
   
   def string_to_time?(start_time, end_time)
     begin
-      if !start_time.empty? and !end_time.empty?
+      if start_time.nil? and end_time.nil?
+        return false
+      else
         start_time.to_time  
         end_time.to_time
         true
-      else
-        false
       end
     rescue ArgumentError
       false
