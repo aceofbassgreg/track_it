@@ -1,16 +1,19 @@
 class Graph
-  def initialize(activity)
+  def initialize(activity, params)
     @activity = activity
+    @start_time = params[:start_time]
+    @end_time = params[:end_time]
+    @days = params[:days]
   end
   
-  def time_frame(params)
+  def time_frame
     case 
-    when (params[:days].nil? and params[:start_time].nil? and params[:end_time].nil?)
+    when (@days.nil? and @start_time.nil? and @end_time.nil?)
       default
-    when params[:days]
-      standard(params[:days])
+    when @days
+      standard(@days)
     else
-      custom(params[:start_time], params[:end_time])
+      custom
     end
   end
   
@@ -23,11 +26,31 @@ class Graph
     @end_time = Time.zone.now
   end
   
-  def custom(start_time, end_time)
-    @start_time = start_time.to_time.beginning_of_day
-    @end_time = end_time.to_time.end_of_day
+  def custom
+    @start_time = @start_time.to_time.beginning_of_day
+    @end_time = @end_time.to_time.end_of_day
   end
   
+  
+  def good_data?
+    return true if @start_time.nil? and @end_time.nil? and @days.nil?
+    return true if @days
+    return false if @start_time.nil? or @end_time.nil? or @start_time.empty? or @end_time.empty?
+    return true if string_to_time?
+  end
+  
+  def string_to_time?
+    begin
+      @start_time.to_time  
+      @end_time.to_time
+      true
+    rescue ArgumentError
+      false
+    end
+  end
+  
+#############################################################  
+
   def all_data
     (empty_data + mapped_data).compact.sort_by {|hash| hash[:date]}
   end
@@ -74,24 +97,5 @@ class Graph
       boolean = true if hash[:date] == value
     end
     boolean
-  end
-  
-  def good_data?(params)
-    return true if params[:start_time].nil? and params[:end_time].nil? and params[:days].nil?
-    return true if params[:days]
-    start_time = params[:start_time]
-    end_time = params[:end_time]
-    return false if start_time.nil? or end_time.nil? or start_time.empty? or end_time.empty?
-    return true if string_to_time?(start_time, end_time)
-  end
-  
-  def string_to_time?(start_time, end_time)
-    begin
-      start_time.to_time  
-      end_time.to_time
-      true
-    rescue ArgumentError
-      false
-    end
   end
 end

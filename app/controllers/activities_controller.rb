@@ -9,8 +9,9 @@ class ActivitiesController < ApplicationController
   
   def show
     @activity = current_user.activities.find(params[:id])
-    if graph.good_data?(params)
-      graph.time_frame(params)
+    @params = params
+    if graph.good_data?
+      graph.time_frame
     else
       flash.now[:error] = "Please enter valid data."
       graph.default
@@ -56,6 +57,6 @@ class ActivitiesController < ApplicationController
   private 
   
   def graph
-      @graph ||= Graph.new(@activity)
+      @graph ||= Graph.new(@activity, @params)
   end
 end
