@@ -12,7 +12,7 @@ jQuery ->
 			buttons:
 				printButton:
 					enabled: true		
-		
+
 		title: 
 			text: 'Statistics'
 			
