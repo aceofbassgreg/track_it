@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  helper_method :graph
+  helper_method :graph  
   
   load_and_authorize_resource
   
@@ -10,12 +10,8 @@ class ActivitiesController < ApplicationController
   def show
     @activity = current_user.activities.find(params[:id])
     @params = params
-    if graph.good_data?
-      graph.time_frame
-    else
-      flash.now[:error] = "Please enter valid data."
-      graph.default
-    end
+    flash.now[:error] = "Please enter valid data." if graph.invalid_date?
+    graph.time_frame
   end
   
   def new

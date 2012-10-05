@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap
+//= require highcharts
+//= require modules/exporting
+//= require modules/data
+//=	require modules/canvas-tools
 //= require raphael
 //= require morris
 //= require_tree .

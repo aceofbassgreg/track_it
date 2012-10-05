@@ -2,12 +2,43 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-	Morris.Line
-		element: 'activity_graph'
-		data: $('#activity_graph').data('time-tracker-graph')
-		xkey: 'date'
-		ykeys: ['minutes']
-		labels: ['Minutes']
+	
+	new Highcharts.Chart
+		chart: 
+			renderTo: "activity_graph"
+			type: 'column'
+
+		exporting:
+			buttons:
+				printButton:
+					enabled: true		
+		
+		title: 
+			text: 'Statistics'
+			
+		xAxis:
+			title:
+				text: 'time frame'
+					
+			type: 'datetime'
+			dateTimeLabelFormats:
+				day: '%e of %b'
+		
+		yAxis:
+			title:
+				text: 'Minutes'
+		
+		series: [{
+			name: $('#activity_graph').data('name')
+			data: $('#activity_graph').data('minutes')
+			pointStart: Date.UTC(
+				$('#activity_graph').data('year'),
+				$('#activity_graph').data('month'),
+				$('#activity_graph').data('day'))
+			pointInterval: 24 * 3600 * 1000
+		}]
+	
+############################################
 		
 	$('#start_time').datepicker
 		dateFormat: 'yy-mm-dd'
@@ -15,6 +46,8 @@ jQuery ->
 		dateFormat: 'yy-mm-dd'
 	
 	 # $('#start_date').datepicker(format: 'yy-mm-dd') take a look at this as well 
+	
+#################################
 	
 
 	# Create two variable with the names of the months and days in an array
