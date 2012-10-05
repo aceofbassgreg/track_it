@@ -28,15 +28,16 @@ jQuery ->
 			title:
 				text: 'Minutes'
 		
-		series: [{
+		series: [
 			name: $('#activity_graph').data('name')
 			data: $('#activity_graph').data('minutes')
 			pointStart: Date.UTC(
-				$('#activity_graph').data('year'),
-				$('#activity_graph').data('month'),
-				$('#activity_graph').data('day'))
+				$('#activity_graph').data('year')
+				$('#activity_graph').data('month')
+				$('#activity_graph').data('day')
+			)
 			pointInterval: 24 * 3600 * 1000
-		}]
+		]
 	
 ############################################
 		
