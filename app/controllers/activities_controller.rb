@@ -35,7 +35,7 @@ class ActivitiesController < ApplicationController
   
   def update
     @activity = current_user.activities.find(params[:id])  
-    if @activity.save
+    if @activity.update_attributes(params[:activity])
       flash[:notice]= "Activity updated."
       redirect_to activity_path(@activity)
     else
