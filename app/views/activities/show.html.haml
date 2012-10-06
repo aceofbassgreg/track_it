@@ -11,18 +11,20 @@
 					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
 					%span.btn= submit_tag 'Show custom dates', class: 'btn'
 	.span3
+		%p= render partial: 'clock'
+		%br
 		- if @activity.clocked_out?
 
 			%h2=@activity.title
 			%p=@activity.description
-			%p="Last time tracker ended on #{@activity.time_trackers.last.clock_in.to_date.strftime("%D")} at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
+			%h4="Clocked out at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
 			%p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
 
 		- elsif @activity.clocked_in?
 
 			%h2=@activity.title
 			%p=@activity.description
-			%p="Last time tracker started on #{@activity.time_trackers.last.clock_in.to_date.strftime("%D")} at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")}"
+			%h4="Clocked in at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")} #{@activity.time_trackers.last.clock_in.to_date.strftime("(%m/%d)")}"
 			%p=link_to "Clock out", activity_time_tracker_path(@activity), {class: 'btn btn-large btn-primary', method: :put}
 
 		- else
@@ -32,7 +34,6 @@
 			%p There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
 			%p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
 		
-		%p= render partial: 'clock'
 		%br
-			%h3 Total time
+			%p Total time
 			%h4= graph.total_time
