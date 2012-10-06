@@ -17,7 +17,6 @@
 //= require highcharts
 //= require modules/exporting
 //= require modules/data
-//=	require modules/canvas-tools
 //= require raphael
 //= require morris
 //= require_tree .
