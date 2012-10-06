@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
   
   def show
     @activity = current_user.activities.find(params[:id])
+    @task = Task.new
     @params = params
     flash.now[:error] = "Please enter valid data." if graph.invalid_date?
     graph.time_frame

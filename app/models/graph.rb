@@ -39,6 +39,7 @@ class Graph
     # start_time and end_time become nil if they are blank
     @start_time.to_time
     @end_time.to_time
+    return false if @start_time == "" or @end_time == ""
     return true if @start_time and @end_time
     rescue ArgumentError
   end

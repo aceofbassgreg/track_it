@@ -8,7 +8,7 @@ class TimeTrackersController < ApplicationController
       flash[:error] = I18n.t "activerecord.errors.models.activity.attributes.base.clock_in_able"
     end
     
-    redirect_to activity_path(params[:activity_id])
+    redirect_to activity_path(activity)
   end
   
   def update
@@ -20,6 +20,6 @@ class TimeTrackersController < ApplicationController
       flash[:error] = I18n.t "activerecord.errors.models.activity.attributes.base.clock_out_able"
     end
     
-    redirect_to activity_path(params[:id])
+    redirect_to activity_path(activity)
   end
 end

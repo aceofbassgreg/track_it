@@ -3,6 +3,7 @@ class Activity < ActiveRecord::Base
   
   belongs_to :user
   has_many :time_trackers, order: :id, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   
   
   validates :title, :description, presence: true
@@ -33,6 +34,27 @@ class Activity < ActiveRecord::Base
     last_time_tracker = time_trackers.last
     return false if last_time_tracker.nil?
     true if last_time_tracker.clock_out
+  end
+  
+  def add_task!(task)
+    tasks.create! description: task[:description], complete: false
+    rescue ActiveRecord::RecordInvalid
+    return false
+  end
+  
+  def update_task!(task)
+    task = tasks.find(task)
+    task.update_attribute :complete, true
+    rescue ActiveRecord::RecordNotFound
+    return false
+  end
+  
+  def incomplete_tasks
+    tasks.select {|task| task if task.complete == false}.reverse
+  end
+  
+  def complete_tasks
+    tasks.select {|task| task if task.complete == true}.reverse
   end
   
   private

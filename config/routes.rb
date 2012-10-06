@@ -6,6 +6,7 @@ Trackit::Application.routes.draw do
 
   resources :activities do
     resources :time_trackers
+    resources :tasks
   end
 
   root to: 'main#index'
