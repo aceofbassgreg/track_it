@@ -22,7 +22,7 @@ jQuery ->
 					
 			type: 'datetime'
 			dateTimeLabelFormats:
-				day: '%e of %b'
+				day: '%b %e'
 		
 		yAxis:
 			title:
