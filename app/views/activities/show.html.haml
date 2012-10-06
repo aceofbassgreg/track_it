@@ -31,5 +31,8 @@
 			%p=@activity.description
 			%p There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
 			%p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
-
+		
 		%p= render partial: 'clock'
+		%br
+			%h3 Total time
+			%h4= graph.total_time
