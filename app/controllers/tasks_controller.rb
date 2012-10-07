@@ -16,11 +16,8 @@ class TasksController < ApplicationController
   
   def update
     activity = Activity.find(params[:id])
-    if activity.update_task!(params[:task])
-      flash[:notice] = "Task completed!"
-    else
-      flash[:error] = "That won't work!"
-    end
+    flash[:notice] = "Task completed!"
+    activity.update_task!(params[:task])
     redirect_to activity_path(params[:id])
   end
 end

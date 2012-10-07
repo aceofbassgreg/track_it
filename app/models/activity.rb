@@ -44,7 +44,11 @@ class Activity < ActiveRecord::Base
   
   def update_task!(task)
     task = tasks.find(task)
-    task.update_attribute :complete, true
+    if task.complete == false
+      task.update_attribute :complete, true
+    else
+      task.update_attribute :complete, false
+    end
     rescue ActiveRecord::RecordNotFound
     return false
   end

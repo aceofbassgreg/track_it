@@ -5,10 +5,11 @@
 			%li.padding1pc
 				= task.description
 				= link_to "Done", activity_task_path(activity, task: task), method: :put, class: 'btn pull-right'
+				
 .well.complete		
 	%h4.label.label-success Done
 	%ul.unstyled.width80pc.indent5pc
 		- activity.complete_tasks.each do |task|
 			%li.padding1pc
 				= task.description
-				= link_to "Not Done", nil, class: 'btn pull-right'
+				= link_to "Not Done", activity_task_path(activity, task: task), method: :put, class: 'btn pull-right'
