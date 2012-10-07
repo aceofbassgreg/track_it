@@ -30,18 +30,17 @@
 	.span9
 		= content_tag :div, "", id: "activity_graph", data: {name: graph.name, minutes: graph.minutes, year: graph.year, month: graph.month, day: graph.day, data_hash: graph.data_hash}
 
-		.graph_date_selector
-			%p= link_to "Last 7 days", activity_path(@activity, days: 7), {class: 'pull-left btn'}
-			%p= link_to "Last 14 days", activity_path(@activity, days: 14), {class: 'pull-left btn'}
-			%p= link_to "Last 30 days", activity_path(@activity, days: 30), {class: 'pull-left btn'}
+		.graph_date_selector.well
+			%span.pull-left
+				= link_to "Last 7 days", activity_path(@activity, days: 7), {class: 'pull-left btn'}
+				= link_to "Last 14 days", activity_path(@activity, days: 14), {class: 'pull-left btn'}
+				= link_to "Last 30 days", activity_path(@activity, days: 30), {class: 'pull-left btn'}
 			%span.pull-right
 				= form_tag activity_path(@activity), method: :get do
 					= text_field_tag :start_time, nil , {placeholder: 'Start Date', class: 'pull-left input-small'}
 					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
 					%span.btn= submit_tag 'Show custom dates', class: 'btn'
-		%br
-		%br
-
+					
 		.tasks
 			.new_task=render partial: 'tasks/form'
 			.existing_tasks=render partial: 'tasks/list', locals: {activity: @activity}
