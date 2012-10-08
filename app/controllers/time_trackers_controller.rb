@@ -3,9 +3,9 @@ class TimeTrackersController < ApplicationController
     activity = Activity.find(params[:activity_id])
     
     if activity.clock_in
-      flash[:notice] = I18n.t "confirmations.activity.clocked_in"
+      flash[:notice] = I18n.t "confirmations.time_tracker.clocked_in"
     else
-      flash[:error] = I18n.t "activerecord.errors.models.activity.attributes.base.clock_in_able"
+      flash[:error] = I18n.t "errors.time_tracker.clock_in_able"
     end
     
     redirect_to activity_path(activity)
@@ -15,9 +15,9 @@ class TimeTrackersController < ApplicationController
     activity = Activity.find(params[:activity_id])
     
     if activity.clock_out
-      flash[:notice] = I18n.t "confirmations.activity.clocked_out"
+      flash[:notice] = I18n.t "confirmations.time_tracker.clocked_out"
     else
-      flash[:error] = I18n.t "activerecord.errors.models.activity.attributes.base.clock_out_able"
+      flash[:error] = I18n.t "errors.time_tracker.clock_out_able"
     end
     
     redirect_to activity_path(activity)

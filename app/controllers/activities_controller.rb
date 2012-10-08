@@ -11,7 +11,7 @@ class ActivitiesController < ApplicationController
     @activity = current_user.activities.find(params[:id])
     @task = Task.new
     @params = params
-    flash.now[:error] = "Please enter valid data." if graph.invalid_date?
+    flash.now[:error] = I18n.t "errors.task.valid_date" if graph.invalid_date?
     graph.time_frame
   end
   
@@ -22,7 +22,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = current_user.activities.new(params[:activity])   
     if @activity.save
-      flash[:notice]= "New activity created."
+      flash[:notice]= I18n.t "notices.activity.created"
       redirect_to activity_path(@activity)
     else
       flash[:error]= "#{@activity.errors.messages}"
@@ -37,7 +37,7 @@ class ActivitiesController < ApplicationController
   def update
     @activity = current_user.activities.find(params[:id])  
     if @activity.update_attributes(params[:activity])
-      flash[:notice]= "Activity updated."
+      flash[:notice]= I18n.t "notices.activity.updated"
       redirect_to activity_path(@activity)
     else
       flash[:error]= "#{@activity.errors.messages}"
@@ -47,7 +47,7 @@ class ActivitiesController < ApplicationController
   
   def destroy
     current_user.activities.find(params[:id]).destroy
-    flash[:notice] = "Activity destroyed."
+    flash[:notice] = I18n.t "notices.activity.destroyed"
     redirect_to activities_path
   end
   

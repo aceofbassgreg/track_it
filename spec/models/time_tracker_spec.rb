@@ -3,11 +3,10 @@ require 'spec_helper'
 describe TimeTracker do
   describe "clock able validation" do
     
-    error_location = "activerecord.errors.models.activity.attributes.base"
-    clock_in_error = I18n.t "#{error_location}.clock_in_able"
-    clock_out_error = I18n.t "#{error_location}.clock_out_able"
-    either_present_error = I18n.t "#{error_location}.either_present"
-    present_error = I18n.t "#{error_location}.present"
+    clock_in_error = I18n.t "errors.time_tracker.clock_in_able"
+    clock_out_error = I18n.t "errors.time_tracker.clock_out_able"
+    either_present_error = I18n.t "errors.time_tracker.either_present"
+    present_error = I18n.t "errors.time_tracker.present"
   
   before :all do
     @activity = create(:activity)  
