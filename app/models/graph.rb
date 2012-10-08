@@ -11,15 +11,13 @@ class Graph
     @days = params[:days]
   end
 
-# Setting the time_frame requested by the user or defaulting
-# to a standard value if the user did not provide dates.
-# The user can request 3 standard dates range (7, 14 or 30
-# days) or he can pick a custom range
+# Selecting a time range. If the user did not get a chance to
+# select a time range the it will default to standard(7)
+# If the user chose 7, 14 or 30 days then the time_range
+# will be one of the standard ranges selected.
+# If the user selected a custom range the custom method
+# will create the specified range
 
-  def default
-    standard(7)
-  end
-  
   def time_frame
     case 
     when params_nil?
@@ -31,26 +29,42 @@ class Graph
     end
   end
   
+# If the data is valid and the user did not get a chance to 
+# select a time range the time range defaults to standard(7)
+
+  def default
+    standard(7)
+  end  
+
+# Setting the standard time range
+    
   def standard(nr)
     @start_time = (Time.zone.now - (nr.to_i - 1).days).beginning_of_day
     @end_time = Time.zone.now.end_of_day
   end
+
+# Setting the custom time range
   
   def custom
     @start_time = @start_time.to_time.beginning_of_day
     @end_time = @end_time.to_time.end_of_day
   end
+
+# If start time or end time are present given that validations passed
+# the user selected a custom time range to be represented
   
   def custom_dates?
     true if @start_time
   end
+
+# If start time, end time and days are all nil the page just loaded and 
+# the user did't yet select a time range. 
   
   def params_nil?
     true if @start_time.nil? and @end_time.nil? and @days.nil?
   end
 
-# Generating the data content given the selected time_frame
- 
+# Generating the data content given the selected time_frame 
   
   def name
     @activity.title
@@ -94,6 +108,8 @@ class Graph
     minutes
   end  
 
+# Total time return the time spent on an activity durring the selected
+# period of time
   def total_time
     sum = 0
     minutes.collect  {|min| sum += min}.last
@@ -101,6 +117,7 @@ class Graph
     minutes = sum % 60 
     "#{hours}h #{minutes}m"
   end
+  
 # We collect the data ordered by clock_in in ascending order. We group 
 # the data by the date of clock in. And we make sure that if the last
 # element is not clocked out it is not included in the graph.  
