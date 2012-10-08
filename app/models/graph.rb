@@ -1,4 +1,8 @@
 class Graph
+  include ActiveModel::Validations
+  validates_with GraphDateValidator
+  
+  attr_accessor :start_time, :end_time, :days
   
   def initialize(activity, params)
     @activity = activity
@@ -7,19 +11,23 @@ class Graph
     @days = params[:days]
   end
 
-# selecting the date
-##########################################################
+# Setting the time_frame requested by the user or defaulting
+# to a standard value if the user did not provide dates.
+# The user can request 3 standard dates range (7, 14 or 30
+# days) or he can pick a custom range
+
+  def default
+    standard(7)
+  end
   
   def time_frame
     case 
     when params_nil?
-      standard(7)
+      default
     when @days
       standard(@days)
-    when valid_date?
+    when custom_dates?
       custom
-    else
-      standard(7)
     end
   end
   
@@ -33,20 +41,8 @@ class Graph
     @end_time = @end_time.to_time.end_of_day
   end
   
-  def valid_date?
-    return true if params_nil?
-    return true if @days
-    # start_time and end_time become nil if they are blank
-    @start_time.to_time
-    @end_time.to_time
-    return false if @start_time == "" or @end_time == ""
-    return true if @start_time and @end_time
-    rescue ArgumentError
-  end
-  
-  #convenience method
-  def invalid_date?
-    !valid_date?
+  def custom_dates?
+    true if @start_time
   end
   
   def params_nil?

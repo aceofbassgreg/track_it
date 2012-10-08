@@ -11,8 +11,12 @@ class ActivitiesController < ApplicationController
     @activity = current_user.activities.find(params[:id])
     @task = Task.new
     @params = params
-    flash.now[:error] = I18n.t "errors.task.valid_date" if graph.invalid_date?
-    graph.time_frame
+    if graph.valid?
+      graph.time_frame
+    else
+      flash.now[:error] = "#{graph.errors.messages.first.second[0]}"
+      graph.default
+    end
   end
   
   def new

@@ -12,6 +12,9 @@ en:
       generic:            "Your task is too long or too short."
       valid_date:         "Please enter valid dates."
     activity:
+    graph:
+      blank_submit:       "You must select a date range before submiting."
+      invalid_date:       "Please use the date picker to select a date or enter a date in the following format yyyy-mm-dd."
   notices:
     activity:
       created:            "New activity created."
