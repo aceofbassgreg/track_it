@@ -21,7 +21,7 @@ en:
       updated:            "Activity updated."
       destroyed:          "Activity destroyed."
   confirmations:
-    activity:
+    time_tracker:
       delete:                       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
       clocked_in:                   "Clocked in."
       clocked_out:                  "Clocked out."
