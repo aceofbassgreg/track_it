@@ -49,8 +49,8 @@ class Graph
     true if @start_time.nil? and @end_time.nil? and @days.nil?
   end
 
-# generating the date  
-#############################################################  
+# Generating the data content given the selected time_frame
+ 
   
   def name
     @activity.title
