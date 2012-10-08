@@ -3,5 +3,5 @@
 %span.form-inline.centered
 	= form_for [@activity, @task] do |f|
 		= f.text_field :description, {placeholder: 'Enter task description and click + to create a new task', class: 'input-task'}
-		= f.button "+", class: 'btn btn-danger'
+		= f.submit "+", class: 'btn btn-danger'
 		
