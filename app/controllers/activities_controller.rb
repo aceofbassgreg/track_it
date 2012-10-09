@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   helper_method :graph  
   
-  load_and_authorize_resource
+  #load_and_authorize_resource
   
   def index
     @activities = current_user.activities
@@ -20,11 +20,20 @@ class ActivitiesController < ApplicationController
   end
   
   def new
-    @activity = current_user.activities.new
+    @activity = Activity.new
+    @activity_groups = current_user.activity_groups.all
   end
   
   def create
-    @activity = current_user.activities.new(params[:activity])   
+    @activity_groups = current_user.activity_groups.all
+    
+    activity_group_id = params[:activity].delete(:activity_group_id)
+    @activity = current_user.activities.new(params[:activity])  
+
+    if !activity_group_id.empty?
+      @activity.activity_group_id = current_user.activity_groups.find(activity_group_id).id
+    end
+
     if @activity.save
       flash[:notice]= I18n.t "notices.activity.created"
       redirect_to activity_path(@activity)
@@ -36,10 +45,19 @@ class ActivitiesController < ApplicationController
   
   def edit
     @activity = current_user.activities.find(params[:id])
+    @activity_groups = current_user.activity_groups.all
   end
   
   def update
-    @activity = current_user.activities.find(params[:id])  
+    @activity_groups = current_user.activity_groups.all
+    
+    activity_group_id = params[:activity].delete(:activity_group_id)
+    @activity = current_user.activities.find(params[:id])
+    
+    if !activity_group_id.empty?
+      @activity.activity_group_id = current_user.activity_groups.find(activity_group_id).id
+    end     
+          
     if @activity.update_attributes(params[:activity])
       flash[:notice]= I18n.t "notices.activity.updated"
       redirect_to activity_path(@activity)

@@ -1,9 +1,9 @@
 class ActivityGroup < ActiveRecord::Base
+  attr_accessible :title
+  
   has_many :activity_groups
   belongs_to :activity_group
   has_many :activities, dependent: :destroy
-
-  attr_accessible :title
   
   validates :title, presence: true
 
