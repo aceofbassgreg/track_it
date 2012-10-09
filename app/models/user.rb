@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
+  has_many :activity_groups, dependent: :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

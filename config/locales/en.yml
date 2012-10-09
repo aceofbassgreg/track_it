@@ -20,10 +20,16 @@ en:
       created:            "New activity created."
       updated:            "Activity updated."
       destroyed:          "Activity destroyed."
+    activity_group:
+      created:            "New activity group create."
+      updated:            "New activity gorup updated."
+      destroyed:          "Activity group destroyed."
   confirmations:
     time_tracker:
       delete:                       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
       clocked_in:                   "Clocked in."
       clocked_out:                  "Clocked out."
+    activity_group:
+      delete:                       "Are you sure you want to permanently delete this activity group? You will loose all associated data!"
   access:
     denied:                         "Access denied!"

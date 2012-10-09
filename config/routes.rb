@@ -1,5 +1,4 @@
 Trackit::Application.routes.draw do
-  
   get "main/index"
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
@@ -8,6 +7,8 @@ Trackit::Application.routes.draw do
     resources :time_trackers
     resources :tasks
   end
+  
+  resources :activity_groups
 
   root to: 'main#index'
   

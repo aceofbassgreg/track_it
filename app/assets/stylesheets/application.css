@@ -20,3 +20,7 @@ caption {
 option {
 	max-width:20px;
 }
+
+.extra_padding {
+	padding: 10%;
+}

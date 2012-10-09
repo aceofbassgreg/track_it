@@ -2,6 +2,7 @@ class Activity < ActiveRecord::Base
   attr_accessible :title, :description
   
   belongs_to :user
+  belongs_to :activity_groups
   has_many :time_trackers, order: :id, dependent: :destroy
   has_many :tasks, dependent: :destroy
   

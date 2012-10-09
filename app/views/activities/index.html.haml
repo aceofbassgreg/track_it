@@ -2,7 +2,7 @@
 
 %table.table
 	%thead
-		%th #
+		%th 
 		%th Name
 		%th Actions
 	-@activities.each_with_index do |activity,i|
@@ -14,4 +14,4 @@
 				=link_to "Edit", edit_activity_path(activity), {class: 'btn btn-small'}
 				=link_to "Delete", activity_path(activity), {class: 'btn btn-small btn-danger', confirm: (I18n.t "confirmations.activity.delete"), method: :delete}	
 		
-=link_to "Add Activity", new_activity_path, {class: 'btn btn-large'}
+=link_to "Create Activity", new_activity_path, {class: 'btn btn-large'}
