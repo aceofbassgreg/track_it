@@ -1,6 +1,13 @@
 class ActivityGroupsController < ApplicationController
+  load_and_authorize_resource except: [:create, :update]
+  
   def index
     @activity_groups = current_user.activity_groups.all_base
+    @activities = current_user.activities.all_base
+  end
+
+  def show
+    @activity_group = current_user.activity_groups.find(params[:id])
   end
 
   def new
@@ -16,8 +23,11 @@ class ActivityGroupsController < ApplicationController
      
     if !activity_group_id.empty?
       @activity_group.activity_group_id = current_user.activity_groups.find(activity_group_id).id
+    else
+      @activity_group.activity_group_id = nil
     end
     
+    authorize! :create, @activity_group
     if @activity_group.save
       flash[:notice] = I18n.t "notices.activity_group.created"
       redirect_to activity_groups_path
@@ -40,8 +50,11 @@ class ActivityGroupsController < ApplicationController
     
     if !activity_group_id.empty?
       @activity_group.activity_group_id = current_user.activity_groups.find(activity_group_id).id
-    end                          
+    else 
+      @activity_group.activity_group_id = nil
+    end                      
     
+    authorize! :update, @activity_group
     if @activity_group.update_attributes(params[:activity_group])
       flash[:notice] = I18n.t "notices.activity_group.updated"
     else

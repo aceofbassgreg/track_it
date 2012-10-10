@@ -1,0 +1,16 @@
+%ul.span6
+	%li.span1
+		%i.icon-folder-close.folder
+	%li.span2
+		= activity_group.title
+	%li.span2
+		= link_to 'Show', activity_group_path(activity_group)
+		
+	- if !activity_group.activity_groups.empty?
+		- activity_group.activity_groups.each do |activity_group|
+			= render partial: 'activity_group', locals: {activity_group: activity_group}
+			
+	- if !activity_group.activities.empty?
+		- activity_group.activities.each do |activity|
+			= render partial: 'activities/activity', locals: {activity: activity}
+			

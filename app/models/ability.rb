@@ -6,7 +6,7 @@ class Ability
     
     can :new, :all
     
-    can [:create,:read,:edit,:update,:destroy], Activity
-    can [:create,:read,:edit,:update,:destroy], ActivityGroup
+    can [:create,:read,:edit,:update,:destroy], Activity, user_id: user.id
+    can [:create,:read,:edit,:update,:destroy], ActivityGroup, user_id: user.id
   end
 end

@@ -2,54 +2,57 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
+		
+	$('ul').children('ul').hide()	
 	
-	new Highcharts.Chart
-		chart: 
-			renderTo: "activity_graph"
-			type: 'column'
-
-		exporting:
-			buttons:
-				printButton:
-					enabled: true		
-
-		title: 
-			text: 'Statistics'
-			
-		xAxis:
-			title:
-				text: 'time frame'
-					
-			type: 'datetime'
-			dateTimeLabelFormats:
-				day: '%b %e'
-		
-		yAxis:
-			title:
-				text: 'Minutes'
-		
-		series: [
-			name: $('#activity_graph').data('name')
-			data: $('#activity_graph').data('minutes')
-			pointStart: Date.UTC(
-				$('#activity_graph').data('year')
-				$('#activity_graph').data('month')
-				$('#activity_graph').data('day')
-			)
-			pointInterval: 24 * 3600 * 1000
-		]
+	$('i.folder').click ->
+		$(this).toggleClass('icon-folder-open')
+		$(this).closest('ul').children('ul').toggle()
 	
-############################################
+	# $('i.icon-folder-open').click ->
+	# 	$(this).closest('ul').children('ul').hide()
 		
+	if ($('activity_graph'))
+		new Highcharts.Chart
+			chart: 
+				renderTo: 'activity_graph'
+				type: 'column'
+
+			exporting:
+				buttons:
+					printButton:
+						enabled: true		
+
+			title: 
+				text: 'Statistics'
+		
+			xAxis:
+				title:
+					text: 'time frame'
+				
+				type: 'datetime'
+				dateTimeLabelFormats:
+					day: '%b %e'
+	
+			yAxis:
+				title:
+					text: 'Minutes'
+	
+			series: [
+				name: $('#activity_graph').data('name')
+				data: $('#activity_graph').data('minutes')
+				pointStart: Date.UTC(
+					$('#activity_graph').data('year')
+					$('#activity_graph').data('month')
+					$('#activity_graph').data('day')
+				)
+				pointInterval: 24 * 3600 * 1000
+			]
+						
 	$('#start_time').datepicker
 		dateFormat: 'yy-mm-dd'
 	$('#end_time').datepicker
 		dateFormat: 'yy-mm-dd'
-	
-	 # $('#start_date').datepicker(format: 'yy-mm-dd') take a look at this as well 
-	
-#################################
-	
 
 	# Create two variable with the names of the months and days in an array
 	 monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

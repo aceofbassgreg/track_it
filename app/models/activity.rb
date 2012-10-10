@@ -11,6 +11,10 @@ class Activity < ActiveRecord::Base
   validates :title, length: {minimum: 2, maximum: 40}
   validates :description, length: {minimum: 6, maximum: 500}
   
+  def self.all_base
+    all.select {|activity| activity if activity.activity_group_id.nil?}
+  end
+  
   def clock_in
     time_tracker = time_trackers.create! clock_in: Time.zone.now
   end

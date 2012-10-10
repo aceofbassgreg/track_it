@@ -24,3 +24,7 @@ option {
 .extra_padding {
 	padding: 10%;
 }
+
+li {
+	list-style-type:none;
+}

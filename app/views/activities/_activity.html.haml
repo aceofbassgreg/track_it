@@ -1,0 +1,9 @@
+%ul.span6
+	%li.span1
+		%i.icon-file
+	%li.span2
+		.text=link_to activity.title, activity_path(activity)
+	%li.span2
+		=link_to "Edit", edit_activity_path(activity)
+		|
+		=link_to "Delete", activity_path(activity), { confirm: (I18n.t "confirmations.activity.delete"), method: :delete}

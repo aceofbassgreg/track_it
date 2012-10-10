@@ -8,10 +8,6 @@ class ActivityGroup < ActiveRecord::Base
   validates :title, presence: true
 
   def self.all_base
-    all.select {|activity_group| activity_group if activity_group.at_base?}
-  end
-  
-  def at_base?
-    activity_group_id.nil?
+    all.select {|activity_group| activity_group if activity_group.activity_group_id.nil?}
   end
 end

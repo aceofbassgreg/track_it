@@ -1,11 +1,7 @@
 class ActivitiesController < ApplicationController
   helper_method :graph  
   
-  #load_and_authorize_resource
-  
-  def index
-    @activities = current_user.activities
-  end
+  load_and_authorize_resource except: [:create, :update]
   
   def show
     @activity = current_user.activities.find(params[:id])
@@ -25,15 +21,19 @@ class ActivitiesController < ApplicationController
   end
   
   def create
+    p "Hello"
     @activity_groups = current_user.activity_groups.all
     
     activity_group_id = params[:activity].delete(:activity_group_id)
     @activity = current_user.activities.new(params[:activity])  
-
+        
     if !activity_group_id.empty?
       @activity.activity_group_id = current_user.activity_groups.find(activity_group_id).id
+    else
+      @activity.activity_group_id = nil
     end
 
+    authorize! :create, @activity
     if @activity.save
       flash[:notice]= I18n.t "notices.activity.created"
       redirect_to activity_path(@activity)
@@ -56,8 +56,12 @@ class ActivitiesController < ApplicationController
     
     if !activity_group_id.empty?
       @activity.activity_group_id = current_user.activity_groups.find(activity_group_id).id
-    end     
+    else
+      @activity.activity_group_id = nil
+    end
           
+    authorize! :update, @activity
+    
     if @activity.update_attributes(params[:activity])
       flash[:notice]= I18n.t "notices.activity.updated"
       redirect_to activity_path(@activity)
