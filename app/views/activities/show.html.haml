@@ -1,4 +1,7 @@
 .row
+	.span12
+		.pull-left.padding-bottom0
+			= link_to 'Back', activity_groups_path
 	.span2.well
 		%p= render partial: 'clock'
 		%br
@@ -27,7 +30,6 @@
 			%p Total time
 			%h4= graph.total_time
 			
-		= link_to 'Back', activity_groups_path, class: 'btn pull-right'
 
 	.span9
 		= content_tag :div, "", id: "activity_graph", data: {name: graph.name, minutes: graph.minutes, year: graph.year, month: graph.month, day: graph.day, data_hash: graph.data_hash}
