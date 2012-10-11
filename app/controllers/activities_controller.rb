@@ -6,6 +6,9 @@ class ActivitiesController < ApplicationController
   def show
     @activity = current_user.activities.find(params[:id])
     @task = Task.new
+    @incomplete_tasks = @activity.incomplete_tasks
+    @complete_tasks = @activity.complete_tasks
+    
     @params = params
     if graph.valid?
       graph.time_frame

@@ -45,6 +45,13 @@
 					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
 					= submit_tag 'Show custom dates', class: 'btn'
 					
-		.tasks
-			.new_task=render partial: 'tasks/form'
-			.existing_tasks=render partial: 'tasks/list', locals: {activity: @activity}
+		#new-tasks= render partial: 'tasks/form'
+		#existing-tasks
+			.well	
+				%h4.label.label-important Incomplete Tasks
+				%ul.unstyled
+					#incomplete-tasks= render @incomplete_tasks
+			.well	
+				%h4.label.label-success Complete Tasks
+				%ul.unstyled
+					#complete-tasks= render @complete_tasks
