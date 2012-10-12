@@ -1,1 +1,2 @@
-$('#incomplete-tasks').append("<%= j render partial: 'task', locals: {task: @task} %>");
+$('#incomplete-tasks').prepend("<%= j render partial: 'task', locals: {task: @task} %>");
+$('#edit_task_<%= @task.id %>').submitOnCheck();

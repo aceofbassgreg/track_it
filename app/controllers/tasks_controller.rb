@@ -5,11 +5,14 @@ class TasksController < ApplicationController
   end
   
   def create
-    activity = current_user.activities.find(params[:activity_id])
+    @activity = current_user.activities.find(params[:activity_id])
     
-    flash[:error] = I18n.t "errors.task.generic" if !activity.add_task!(params[:task])    
-    
-    @task = activity.tasks.last
+    unless task = @activity.add_task!(params[:task])
+      flash[:error] = I18n.t "errors.task.generic"
+      # render or redirect_to
+      return
+    end
+    @task = task
     
     respond_to do |format|
       format.html { redirect_to activity_path(activity) }
@@ -18,8 +21,22 @@ class TasksController < ApplicationController
   end
   
   def update
-    activity = current_user.activities.find(params[:id])
-    activity.update_task!(params[:task])
-    redirect_to activity_path(activity)
+    activity = current_user.activities.find(params[:activity_id])
+    @task = activity.tasks.find(params[:id])
+    activity.update_task!(params[:id])
+    respond_to do |format|
+      format.html { redirect_to activity_path(activity) }
+      format.js
+    end
+  end
+  
+  def destroy
+    activity = current_user.activities.find(params[:activity_id])
+    @task = activity.tasks.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.html {redirect_to activity_path(activity)}
+      format.js
+    end
   end
 end

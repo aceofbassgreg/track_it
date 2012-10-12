@@ -1,8 +1,5 @@
-%li
-	/ = form_for [task.activity, task] do |f|
-	/ 	= f.check_box :complete
-	/ 	= f.submit "Update", {method: :put}
-	/ 	= f.label :complete, task.description
-	
-	= task.description
-	= link_to "Done", activity_task_path(task.activity, task: task), html_options = {method: :put, class: 'pull-right'}
+= form_for [task.activity, task], remote: true do |f|
+	= f.check_box :complete, class: 'pull-left'
+	= f.submit 'Update'
+	= f.label :complete, task.description, class: 'pull-left'
+	= link_to "(remove)", activity_task_path(task.activity, task), method: :delete, data: { confirm: 'Are you sure?'}, remote: true

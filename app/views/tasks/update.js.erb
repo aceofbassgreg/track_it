@@ -1,0 +1,5 @@
+<% if @task.complete? %>
+	$('#edit_task_<%= @task.id %>').prependTo('#incomplete-tasks');
+<% else %>
+	$('#edit_task_<%= @task.id %>').prependTo('#complete-tasks');
+<% end %>

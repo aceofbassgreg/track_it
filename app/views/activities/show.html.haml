@@ -10,7 +10,8 @@
 			%h2=@activity.title
 			%p=@activity.description
 			%h4="Clocked out at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
-			%p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
+			%p=link_to "Clock in", activity_time_trackers_path(@activity),
+			{class: 'btn btn-large btn-primary', method: :post}
 
 		- elsif @activity.clocked_in?
 
@@ -49,9 +50,7 @@
 		#existing-tasks
 			.well	
 				%h4.label.label-important Incomplete Tasks
-				%ul.unstyled
-					#incomplete-tasks= render @incomplete_tasks
+				#incomplete-tasks= render @incomplete_tasks
 			.well	
 				%h4.label.label-success Complete Tasks
-				%ul.unstyled
-					#complete-tasks= render @complete_tasks
+				#complete-tasks= render @complete_tasks

@@ -1,6 +1,6 @@
 %h3 
 	Tasks
 %span.form-inline.centered
-	= form_for [@activity, @task] do |f|
+	= form_for [@activity, @task], remote: true do |f|
 		= f.text_field :description, {placeholder: 'Enter task description and click + to create a new task', class: 'input-task'}
 		= f.submit "+", class: 'btn btn-danger'

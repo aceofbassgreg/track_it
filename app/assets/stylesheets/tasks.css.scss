@@ -1,6 +1,28 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#complete-tasks form {
+  font-size: 12px;
+  color: #777;
+  label { text-decoration: line-through; }
+}
+
+#complete-tasks form, #incomplete-tasks form {
+	input[type=checkbox] {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	
+	a {
+    color: #999;
+    font-size: 12px;
+    text-decoration: none;
+		margin-left: 10px;
+    &:hover { text-decoration: underline; }
+  }
+}
+
 .input-task {
 	width: 50%;
 }
