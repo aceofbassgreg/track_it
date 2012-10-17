@@ -21,12 +21,12 @@
   .span6
     %h2 Tasks
     .well  
-      %h4.label.label-important Incomplete Tasks
+      %h3.label.label-important Incomplete Tasks
       - @activities.each do |activity|
-        %h3= activity.title
+        %h4= activity.title
         #incomplete-tasks= render partial: activity.incomplete_tasks
     .well  
-      %h4.label.label-success Complete Tasks
+      %h3.label.label-success Complete Tasks
       - @activities.each do |activity|
-        %h3= activity.title
+        %h4= activity.title
         #complete-tasks= render partial: activity.complete_tasks
