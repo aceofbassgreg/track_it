@@ -59,11 +59,11 @@ class Activity < ActiveRecord::Base
   end
   
   def incomplete_tasks
-    tasks.select {|task| task if task.complete == false}.reverse
+    tasks.select {|task| task.complete == false}.reverse
   end
   
   def complete_tasks
-    tasks.select {|task| task if task.complete == true}.reverse
+    tasks.select {|task| task.complete == true}.reverse
   end
   
   private

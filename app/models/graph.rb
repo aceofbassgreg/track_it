@@ -28,7 +28,7 @@ class Graph
       custom
     end
   end
-  
+
 # If the data is valid and the user did not get a chance to 
 # select a time range the time range defaults to standard(7)
 

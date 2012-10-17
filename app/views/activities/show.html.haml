@@ -33,7 +33,7 @@
 			
 
 	.span9
-		= content_tag :div, "", id: "activity_graph", data: {name: graph.name, minutes: graph.minutes, year: graph.year, month: graph.month, day: graph.day, data_hash: graph.data_hash}
+		= render partial: 'graph', locals: {graph: graph}
 
 		.graph_date_selector.well
 			%span.pull-left
@@ -45,7 +45,7 @@
 					= text_field_tag :start_time, nil , {placeholder: 'Start Date', class: 'pull-left input-small'}
 					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
 					= submit_tag 'Show custom dates', class: 'btn'
-					
+		
 		#new-tasks= render partial: 'tasks/form'
 		#existing-tasks
 			.well	

@@ -3,7 +3,8 @@ class ActivityGroupsController < ApplicationController
   
   def index
     @activity_groups = current_user.activity_groups.all_base
-    @activities = current_user.activities.all_base
+    @activities_base = current_user.activities.all_base
+    @activities = current_user.activities.all
   end
 
   def show
@@ -18,7 +19,7 @@ class ActivityGroupsController < ApplicationController
   def create
     @activity_groups = current_user.activity_groups.all
     
-    activity_group_id = params[:activity_group].delete(:activity_group_id)                          
+    activity_group_id = params[:activity_group].delete(:activity_group_id)
     @activity_group = current_user.activity_groups.new(params[:activity_group]) 
      
     if !activity_group_id.empty?
