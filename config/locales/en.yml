@@ -29,6 +29,8 @@ en:
       delete:                       "Are you sure you want to permanently delete this activity? You will loose all associated data!"
       clocked_in:                   "Clocked in."
       clocked_out:                  "Clocked out."
+    activity:
+      delete:                       "Are you sure?"
     activity_group:
       delete:                       "Are you sure you want to permanently delete this activity group? You will loose all associated data!"
   access:

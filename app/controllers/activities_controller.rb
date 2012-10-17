@@ -77,7 +77,7 @@ class ActivitiesController < ApplicationController
   def destroy
     current_user.activities.find(params[:id]).destroy
     flash[:notice] = I18n.t "notices.activity.destroyed"
-    redirect_to activities_path
+    redirect_to activity_groups_path
   end
   
   private 
