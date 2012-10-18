@@ -1,56 +1,59 @@
 .row
-	.span12
-		.pull-left.padding-bottom0
-			= link_to 'Back', activity_groups_path
-	.span2.well
-		%p= render partial: 'clock'
-		%br
-		- if @activity.clocked_out?
+  .span12
+    .pull-left.padding-bottom0
+      = link_to 'Back', activity_groups_path
+      |
+      = link_to 'Edit', edit_activity_path, id: 'edit_activity', remote: true
+    #update_activity.modal.hide.fade= render partial: 'edit'
 
-			%h2=@activity.title
-			%p=@activity.description
-			%h4="Clocked out at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
-			%p=link_to "Clock in", activity_time_trackers_path(@activity),
-			{class: 'btn btn-large btn-primary', method: :post}
+  .span2.well
+    %p= render partial: 'clock'
+    %br
+    - if @activity.clocked_out?
 
-		- elsif @activity.clocked_in?
+      %h2=@activity.title
+      %p=@activity.description
+      %h4="Clocked out at #{@activity.time_trackers.last.clock_out.strftime("%H:%M")}"
+      %p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
 
-			%h2=@activity.title
-			%p=@activity.description
-			%h4="Clocked in at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")} #{@activity.time_trackers.last.clock_in.to_date.strftime("(%m/%d)")}"
-			%p=link_to "Clock out", activity_time_tracker_path(@activity), {class: 'btn btn-large btn-primary', method: :put}
+    - elsif @activity.clocked_in?
 
-		- else
+      %h2=@activity.title
+      %p=@activity.description
+      %h4="Clocked in at #{@activity.time_trackers.last.clock_in.strftime("%H:%M")} #{@activity.time_trackers.last.clock_in.to_date.strftime("(%m/%d)")}"
+      %p=link_to "Clock out", activity_time_tracker_path(@activity), {class: 'btn btn-large btn-primary', method: :put}
 
-			%h2=@activity.title
-			%p=@activity.description
-			%p There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
-			%p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
+    - else
+
+      %h2=@activity.title
+      %p=@activity.description
+      %p There are no time trackers at the current time. Planning on working on this activity? Start tracking by Clocking in!
+      %p=link_to "Clock in", activity_time_trackers_path(@activity), {class: 'btn btn-large btn-primary', method: :post}
 		
-		%br
-			%p Total time
-			%h4= graph.total_time
+    %br
+      %p Total time
+      %h4= graph.total_time
 			
 
-	.span9
-		= render partial: 'graph', locals: {graph: graph}
+  .span9
+    = render partial: 'graph', locals: {graph: graph}
 
-		.graph_date_selector.well
-			%span.pull-left
-				= link_to "Last 7 days", activity_path(@activity, days: 7), {class: 'pull-left btn'}
-				= link_to "Last 14 days", activity_path(@activity, days: 14), {class: 'pull-left btn'}
-				= link_to "Last 30 days", activity_path(@activity, days: 30), {class: 'pull-left btn'}
-			%span.pull-right
-				= form_tag activity_path(@activity), method: :get do
-					= text_field_tag :start_time, nil , {placeholder: 'Start Date', class: 'pull-left input-small'}
-					= text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
-					= submit_tag 'Show custom dates', class: 'btn'
+    .graph_date_selector.well
+      %span.pull-left
+        = link_to "Last 7 days", activity_path(@activity, days: 7), {class: 'pull-left btn'}
+        = link_to "Last 14 days", activity_path(@activity, days: 14), {class: 'pull-left btn'}
+        = link_to "Last 30 days", activity_path(@activity, days: 30), {class: 'pull-left btn'}
+      %span.pull-right
+        = form_tag activity_path(@activity), method: :get do
+          = text_field_tag :start_time, nil , {placeholder: 'Start Date', class: 'pull-left input-small'}
+          = text_field_tag :end_time, nil , {placeholder: 'End Date', class: 'pull-left input-small'}
+          = submit_tag 'Show custom dates', class: 'btn'
 		
-		#new-tasks= render partial: 'tasks/form'
-		#existing-tasks
-			.well	
-				%h4.label.label-important Incomplete Tasks
-				#incomplete-tasks= render @incomplete_tasks
-			.well	
-				%h4.label.label-success Complete Tasks
-				#complete-tasks= render @complete_tasks
+    #new-tasks= render partial: 'tasks/form'
+    #existing-tasks
+      .well	
+        %h4.label.label-important Incomplete Tasks
+        #incomplete-tasks= render @incomplete_tasks
+      .well	
+        %h4.label.label-success Complete Tasks
+        #complete-tasks= render @complete_tasks

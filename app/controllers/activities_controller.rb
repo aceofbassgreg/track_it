@@ -9,6 +9,8 @@ class ActivitiesController < ApplicationController
     @incomplete_tasks = @activity.incomplete_tasks
     @complete_tasks = @activity.complete_tasks
     
+    @activity_groups = current_user.activity_groups.all
+
     @params = params
     if graph.valid?
       graph.time_frame

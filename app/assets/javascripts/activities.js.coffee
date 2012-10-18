@@ -1,6 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+
+  $('#edit_activity').click ->
+    $('#update_activity').modal()
+
 jQuery ->		
 	if $('#activity_graph').length == 1
 		new Highcharts.Chart
