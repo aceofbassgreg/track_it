@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
-  helper_method :graph  
+  helper_method :graph
+  helper_method :activity_groups
   
   load_and_authorize_resource except: [:create, :update]
   
@@ -9,8 +10,6 @@ class ActivitiesController < ApplicationController
     @incomplete_tasks = @activity.incomplete_tasks
     @complete_tasks = @activity.complete_tasks
     
-    @activity_groups = current_user.activity_groups.all
-
     @params = params
     if graph.valid?
       graph.time_frame
@@ -22,16 +21,11 @@ class ActivitiesController < ApplicationController
   
   def new
     @activity = Activity.new
-    @activity_groups = current_user.activity_groups.all
   end
   
   def create
-    p "Hello"
-    @activity_groups = current_user.activity_groups.all
-    
     activity_group_id = params[:activity].delete(:activity_group_id)
     @activity = current_user.activities.new(params[:activity])  
-        
     if !activity_group_id.empty?
       @activity.activity_group_id = current_user.activity_groups.find(activity_group_id).id
     else
@@ -50,12 +44,9 @@ class ActivitiesController < ApplicationController
   
   def edit
     @activity = current_user.activities.find(params[:id])
-    @activity_groups = current_user.activity_groups.all
   end
   
   def update
-    @activity_groups = current_user.activity_groups.all
-    
     activity_group_id = params[:activity].delete(:activity_group_id)
     @activity = current_user.activities.find(params[:id])
     
@@ -86,5 +77,9 @@ class ActivitiesController < ApplicationController
   
   def graph
       @graph ||= Graph.new(@activity, @params)
+  end
+
+  def activity_groups
+    @activity_groups ||= current_user.activity_groups.all
   end
 end
