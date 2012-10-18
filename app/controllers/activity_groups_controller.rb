@@ -6,6 +6,7 @@ class ActivityGroupsController < ApplicationController
     @activities_base = current_user.activities.all_base
     @activities = current_user.activities.all
     @activity_group = current_user.activity_groups.new
+    @activity = current_user.activities.new
   end
 
   def show

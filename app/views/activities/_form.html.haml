@@ -1,16 +1,14 @@
-%h2 New Activity
-
 = form_for activity do |f|
-	%div
-		=f.label :title
-		=f.text_field :title
-	%div
-		=f.label :description
-		=f.text_area :description
-	%div
-		=f.label :activity_group_id
-		=f.select :activity_group_id, options_from_collection_for_select(@activity_groups, "id", "title"), {:include_blank => 'None'}
-		
-	=f.submit btn_text,{class: 'btn btn-large btn-primary'}
-	
-= link_to "Back", activity_groups_path
+  .modal-body
+    %div
+      =f.label :title
+      =f.text_field :title
+    %div
+      =f.label :description
+      =f.text_area :description
+    %div
+      =f.label :activity_group_id
+      =f.select :activity_group_id, options_from_collection_for_select(@activity_groups, "id", "title"), {:include_blank => 'None'}
+  
+  .modal-footer
+    =f.submit btn_text,{class: 'btn btn-large btn-primary'}

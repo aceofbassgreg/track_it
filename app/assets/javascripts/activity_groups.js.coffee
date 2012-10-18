@@ -7,6 +7,9 @@ jQuery ->
   $('#create_activity_group').click ->
     $('#new_activity_group').modal()
 
+  $('#create_activity').click ->
+    $('#new_activity').modal()
+
 jQuery ->
 
 	$('ul').children('ul').hide()	
