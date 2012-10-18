@@ -11,6 +11,7 @@ class ActivityGroupsController < ApplicationController
 
   def show
     @activity_group = current_user.activity_groups.find(params[:id])
+    @activity_groups = current_user.activity_groups.all
   end
 
   def new

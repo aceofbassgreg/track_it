@@ -9,6 +9,9 @@ jQuery ->
 
   $('#create_activity').click ->
     $('#new_activity').modal()
+  
+  $('#edit_activity_group').click ->
+    $('#update_activity_group').modal()
 
 jQuery ->
 

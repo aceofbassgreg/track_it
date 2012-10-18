@@ -2,8 +2,10 @@
 
 %h3= @activity_group.title
 
-= link_to "Edit", edit_activity_group_path(@activity_group)
+= link_to "Edit", edit_activity_group_path(@activity_group), id: 'edit_activity_group', remote: true
 |
 = link_to "Delete", activity_group_path(@activity_group), {confirm: (I18n.t "confirmations.activity_group.delete"), method: :delete}
 |
 = link_to "Back", activity_groups_path
+
+#update_activity_group.modal.hide.fade= render partial: 'edit'
