@@ -4,8 +4,14 @@
 
 jQuery -> 
 
+  $('#create_activity_group').click ->
+    $('#new_activity_group').modal()
+
+jQuery ->
+
 	$('ul').children('ul').hide()	
 
 	$('i.folder').click ->
 		$(this).toggleClass('icon-folder-open')
 		$(this).closest('ul').children('ul').toggle()
+

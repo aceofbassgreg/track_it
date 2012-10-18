@@ -14,8 +14,8 @@
     - else
       %h2.extra_padding You have no Activity Groups yet. Add one and start managing your time. 
     
-    =link_to "Create Activity Group", new_activity_group_path, {class: 'btn'}
-    =link_to "Create Activity", new_activity_path, {class: 'btn'}
+    =link_to "Create Activity Group", new_activity_group_path, {class: 'btn', remote: true, id: 'create_activity_group'}
+    =link_to "Create Activity", new_activity_path, {class: 'btn', remote: true, id: 'create_activity'}
 
   .span6
     %h2 Tasks
@@ -35,3 +35,6 @@
           #complete-tasks= render partial: activity.complete_tasks
       - else
         %h4 You have no completed tasks.
+
+  .span12
+    #new_activity_group.modal.hide.fade= render partial: 'activity_groups/new'

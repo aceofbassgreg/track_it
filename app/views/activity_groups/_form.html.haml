@@ -1,10 +1,11 @@
 =form_for @activity_group do |f|
-	%div
-		=f.label :title
-		=f.text_field :title
-	%div
-		=f.label :activity_group_id
-		=f.select :activity_group_id, options_from_collection_for_select(@activity_groups, "id", "title"), {:include_blank => 'None'}
-
-	=f.submit btn_text, class: 'btn btn-primary'
-	
+  .modal-body
+    %div
+      =f.label :title
+      =f.text_field :title
+    %div
+      =f.label :activity_group_id
+      =f.select :activity_group_id, options_from_collection_for_select(@activity_groups, "id", "title"), {:include_blank => 'None'}
+  .modal-footer
+    =f.submit btn_text, class: 'btn btn-primary'
+    
