@@ -3,7 +3,6 @@
     %h1.padding_bottom1 Activity Groups
 
     - if !@activity_groups.empty? or !@activities_base.empty?
-    
       %ul.span6
         %li.span1
           %i.icon-globe
@@ -17,24 +16,7 @@
     =link_to "Create Activity Group", new_activity_group_path, {class: 'btn', remote: true, id: 'create_activity_group'}
     =link_to "Create Activity", new_activity_path, {class: 'btn', remote: true, id: 'create_activity'}
 
-  .span6
-    %h2 Tasks
-    .well  
-      %h3.label.label-important Incomplete Tasks
-      - if @activities.present?
-        - @activities.each do |activity|
-          %h4= activity.title
-          #incomplete-tasks= render partial: activity.incomplete_tasks
-      - else
-        %h4 No tasks need to be completed at this time.
-    .well  
-      %h3.label.label-success Complete Tasks
-      - if @activities.present?
-        - @activities.each do |activity|
-          %h4= activity.title
-          #complete-tasks= render partial: activity.complete_tasks
-      - else
-        %h4 You have no completed tasks.
+  = render partial: 'tasks'
 
   .span12
     #new_activity_group.modal.hide.fade= render partial: 'activity_groups/new'

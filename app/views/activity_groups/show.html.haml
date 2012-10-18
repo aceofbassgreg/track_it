@@ -1,11 +1,21 @@
-%h2 Activity Group
+.row
+  .span6
+    %h2= @activity_group.title
 
-%h3= @activity_group.title
+    - if @activities.present?
+      %ul.span6
+        %li.span1
+          %i.icon-globe
+        %li.span2 Name
 
-= link_to "Edit", edit_activity_group_path(@activity_group), id: 'edit_activity_group', remote: true
-|
-= link_to "Delete", activity_group_path(@activity_group), {confirm: (I18n.t "confirmations.activity_group.delete"), method: :delete}
-|
-= link_to "Back", activity_groups_path
+    = render @activities
+    
+    = link_to "Edit", edit_activity_group_path(@activity_group), id: 'edit_activity_group', remote: true
+    |
+    = link_to "Delete", activity_group_path(@activity_group), {confirm: (I18n.t "confirmations.activity_group.delete"), method: :delete}
+    |
+    = link_to "Back", activity_groups_path
+ 
+  .span6= render partial: 'tasks'
 
 #update_activity_group.modal.hide.fade= render partial: 'edit'

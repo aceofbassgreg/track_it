@@ -2,17 +2,17 @@ class ActivityGroupsController < ApplicationController
   load_and_authorize_resource except: [:create, :update]
 
   helper_method :activity_groups
-
   def index
     @activity_groups = current_user.activity_groups.all_base
     @activities_base = current_user.activities.all_base
-    @activities = current_user.activities.all
     @activity_group = current_user.activity_groups.new
     @activity = current_user.activities.new
+    @activities = current_user.activities.all
   end
 
   def show
     @activity_group = current_user.activity_groups.find(params[:id])
+    @activities = @activity_group.activities.all
   end
 
   def new

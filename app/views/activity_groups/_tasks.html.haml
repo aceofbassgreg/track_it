@@ -1,0 +1,19 @@
+.span6
+  %h2 Tasks
+  .well  
+    %h3.label.label-important Incomplete Tasks
+    - if @activities.present?
+      - @activities.each do |activity|
+        %h4= activity.title
+        #incomplete-tasks= render partial: activity.incomplete_tasks
+    - else
+      %h4 No tasks need to be completed at this time.
+  .well  
+    %h3.label.label-success Complete Tasks
+    - if @activities.present?
+      - @activities.each do |activity|
+        %h4= activity.title
+        #complete-tasks= render partial: activity.complete_tasks
+    - else
+      %h4 You have no completed tasks.
+
